@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cp57ph1uplfrv"]
+
+[ext_resource type="Script" uid="uid://bndfi5sqoqvuj" path="res://assets/objects/o_door/ODoor.cs" id="1_abd3t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpbhq"]
+
+[node name="oDoor" type="Node2D" unique_id=492779955]
+script = ExtResource("1_abd3t")
+
+[node name="door_interactable_area" type="Area2D" parent="." unique_id=1541824575 groups=["Door"]]
+
+[node name="interactable_shape" type="CollisionShape2D" parent="door_interactable_area" unique_id=1494246447]
+shape = SubResource("RectangleShape2D_jpbhq")
+
+[node name="player_exit_marker" type="Marker2D" parent="." unique_id=1536855170]
+position = Vector2(0, 16)
