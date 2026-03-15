@@ -5,7 +5,6 @@ public partial class OPlayer : CharacterBody2D
 {
 
 	// # --------public variables-----------#
-	public bool ReadyToTeleport = false;
 	// # ------------------------------------#
 
 // # -----------Exports------------------#
@@ -15,26 +14,39 @@ public partial class OPlayer : CharacterBody2D
 
     public override void _Ready()
     {
-		Area2D playerInteractionArea = FindChild("playerInteactableArea", true) as Area2D;
-		playerInteractionArea.Connect("body_entered", new Callable(this, nameof(OnPlayerInteractionAreaBodyEntered)));
-		playerInteractionArea.Connect("body_exited", new Callable(this, nameof(OnPlayerInteractionAreaBodyExited)));
+		// Check if the playerInteractionArea is inside the player, if not return an error message.
+		CollisionShape2D playerInteractionShape = FindChild("playerInteractionShape", true) as CollisionShape2D;
+		if (playerInteractionShape == null)
+		{
+			GD.PrintErr($"Failed to find the player interaction shape for the player [{this.Name}]. Make sure to add one as a child of the player.");
+			return;
+		}
     }
 
 
+	// standard physics process that runs every frame.
 	public override void _PhysicsProcess(double delta)
 	{
-
+		// collect the direction of the player based on the action pressed.
 		var direction = Input.GetVector(PlayerActions.MoveLeft, PlayerActions.MoveRight, PlayerActions.MoveUp, PlayerActions.MoveDown);
 		
+		// normalize the player velocity so that diagonal movements isnt sqrt(2) faster. 
 		Velocity = direction.Normalized() * Speed;
 		MoveAndSlide();
 	}
 
+	/// <summary>
+	/// Standard fucntion for player teleportation. 
+	/// </summary>
+	/// <param name="newPosition"></param>
 	public void TeleportTo(Vector2 newPosition)
 	{
 		Position = newPosition;
 	}
 
+	/// <summary>
+	/// Standard player actions for movement and interaction. These should be set up in the project input map for the player to work properly.
+	/// </summary>
 	public struct PlayerActions
 	{
 		public const string MoveRight = "playerMoveRight";
@@ -44,16 +56,4 @@ public partial class OPlayer : CharacterBody2D
 		public const string Interact = "playerInteract";
 	}
 
-
-	// # -----------Signals------------------#
-	private void OnPlayerInteractionAreaBodyEntered(Node2D body)
-	{
-		if (body.IsInGroup("Door")) ReadyToTeleport = true;	
-	}
-
-	private void OnPlayerInteractionAreaBodyExited(Node2D body)
-	{
-		ReadyToTeleport = false;
-	}
-	// # ------------------------------------#
 }

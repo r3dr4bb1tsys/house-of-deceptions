@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cp57ph1uplfrv"]
+
+[ext_resource type="Script" uid="uid://bndfi5sqoqvuj" path="res://assets/objects/o_door/ODoor.cs" id="1_abd3t"]
+[ext_resource type="Texture2D" uid="uid://bgwrnid7jdcai" path="res://icon.svg" id="2_jpbhq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpbhq"]
+
+[node name="oDoor" type="Node2D" unique_id=262252192]
+script = ExtResource("1_abd3t")
+
+[node name="doorInteractionArea" type="Area2D" parent="." unique_id=1034902184]
+
+[node name="doorInteractionShape" type="CollisionShape2D" parent="doorInteractionArea" unique_id=1628890031]
+shape = SubResource("RectangleShape2D_jpbhq")
+
+[node name="localExitPositionMarker" type="Marker2D" parent="." unique_id=1551663440]
+position = Vector2(0, 16)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=657266718]
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("2_jpbhq")

@@ -147,7 +147,7 @@ size = Vector2(16, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_iv8vd"]
 radius = 16.124516
 
-[node name="oPlayer" type="CharacterBody2D" unique_id=831620466]
+[node name="oPlayer" type="CharacterBody2D" unique_id=831620466 groups=["Player"]]
 script = ExtResource("1_iv8vd")
 
 [node name="spriteAnimator" type="AnimatedSprite2D" parent="." unique_id=1844162252]
@@ -158,12 +158,12 @@ animation = &"frontIdle"
 position = Vector2(0, 22)
 shape = SubResource("RectangleShape2D_28quv")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=409858452]
+[node name="playerCamera" type="Camera2D" parent="." unique_id=409858452]
 z_index = 100
 zoom = Vector2(4, 4)
 
-[node name="playerInteactableArea" type="Area2D" parent="." unique_id=1146851441 groups=["Player"]]
+[node name="playerInteactionArea" type="Area2D" parent="." unique_id=931368051 groups=["PlayerInteactionArea"]]
 
-[node name="interactableBox" type="CollisionShape2D" parent="playerInteactableArea" unique_id=1403150004 groups=["Player"]]
-position = Vector2(0, -8)
+[node name="playerInteractionShape" type="CollisionShape2D" parent="playerInteactionArea" unique_id=1403150004 groups=["PlayerInteractionShape"]]
+position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_iv8vd")
