@@ -5,15 +5,15 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpbhq"]
 
-[node name="oDoor" type="Node2D" unique_id=262252192]
+[node name="oDoor" type="Node2D" unique_id=262252192 groups=["Door"]]
 script = ExtResource("1_abd3t")
 
-[node name="doorInteractionArea" type="Area2D" parent="." unique_id=1034902184]
+[node name="doorInteractionArea" type="Area2D" parent="." unique_id=1034902184 groups=["DoorInteractionArea"]]
 
-[node name="doorInteractionShape" type="CollisionShape2D" parent="doorInteractionArea" unique_id=1628890031]
+[node name="doorInteractionShape" type="CollisionShape2D" parent="doorInteractionArea" unique_id=1628890031 groups=["DoorInteractionShape"]]
 shape = SubResource("RectangleShape2D_jpbhq")
 
-[node name="localExitPositionMarker" type="Marker2D" parent="." unique_id=1551663440]
+[node name="localExitPositionMarker" type="Marker2D" parent="." unique_id=1551663440 groups=["DoorExitPositionMarker"]]
 position = Vector2(0, 16)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=657266718]

@@ -480,6 +480,6 @@ tile_set = SubResource("TileSet_6ctsc")
 position = Vector2(0, -10)
 LinkedDoor = NodePath("../../../Hall_1/to_bedroom_door/ToBedroomDoor")
 
-[node name="oPlayer" parent="." unique_id=831620466 groups=["Player", "PlayerInteactionArea"] instance=ExtResource("3_3ensd")]
+[node name="oPlayer" parent="." unique_id=831620466 groups=["PlayerInteactionArea"] instance=ExtResource("3_3ensd")]
 z_index = 10
 position = Vector2(26, 29)

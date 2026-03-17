@@ -25,6 +25,9 @@ Door="This is the main group the the door object"
 PlayerInteactionArea="Group for the player interaction area."
 PlayerInteractionShape="Group for the player interaction shape."
 PlayerCollisionShape="Group for the player collision shape."
+DoorInteractionArea="Group for the door interaction area "
+DoorInteractionShape="Group for the door interaction shape"
+DoorExitPositionMarker="Group for the door exit position marker 2d."
 
 [input]
 
