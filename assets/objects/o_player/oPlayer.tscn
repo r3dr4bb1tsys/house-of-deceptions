@@ -142,7 +142,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28quv"]
-size = Vector2(16, 20)
+size = Vector2(12, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iv8vd"]
 radius = 16.124516
@@ -153,9 +153,11 @@ script = ExtResource("1_iv8vd")
 [node name="spriteAnimator" type="AnimatedSprite2D" parent="." unique_id=1844162252]
 sprite_frames = SubResource("SpriteFrames_3u2np")
 animation = &"frontIdle"
+autoplay = "frontIdle"
+frame_progress = 0.22707689
 
 [node name="collisionBox" type="CollisionShape2D" parent="." unique_id=1474943631]
-position = Vector2(0, 22)
+position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_28quv")
 
 [node name="playerCamera" type="Camera2D" parent="." unique_id=409858452]

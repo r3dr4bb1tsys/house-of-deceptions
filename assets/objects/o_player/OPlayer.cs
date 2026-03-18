@@ -18,6 +18,8 @@ public partial class OPlayer : CharacterBody2D
 
 	// # Private Variables # //
 	private ODoor _enteredDoor;
+	private AnimatedSprite2D spriteAnimator;
+	private string lastAnimation = string.Empty;
 	// # ----------------- # //
 
 	// # public variables # // 
@@ -49,6 +51,14 @@ public partial class OPlayer : CharacterBody2D
 			GD.PrintErr($"Failed to find the interaction shape for the player [{this.Name}]. Make sure to add one as a child of the player.");
 			return;
 		}
+
+		// check if the spriteAnimator is inside the player, if not return an error message. 
+		spriteAnimator = FindChild("spriteAnimator", true) as AnimatedSprite2D;
+		if (spriteAnimator == null)
+		{
+			GD.PrintErr($"[OPlayer.cs/_Ready] - Failed to find the sprite animator for the player. Make sure to add one as a child of the player.");
+			return;
+		}
     }
 
 
@@ -60,6 +70,51 @@ public partial class OPlayer : CharacterBody2D
 		
 		// normalize the player velocity so that diagonal movements isnt sqrt(2) faster. 
 		Velocity = direction.Normalized() * Speed;
+
+		// apply the correct animation based on the player movement direction.
+		
+		if (Velocity == Vector2.Zero) // velocity is zero meaning the player is not moving, therefore the player is idle, so we play the idle animation. 
+		{
+			if (lastAnimation.ToLower().Contains("side"))	// the last animation was walkSide;
+			{
+				spriteAnimator.Play("sideIdle");
+			}
+			else	// the last animation was either walkdown or walkup. 
+			{
+				if (lastAnimation.ToLower().Contains("up"))
+				{
+					spriteAnimator.Play("backIdle");
+				}
+				else if (lastAnimation.ToLower().Contains("down"))
+				{
+					spriteAnimator.Play("frontIdle");
+				}
+			}
+		}
+		if (direction.X != Vector2.Zero.X)	// x direction is not zero meaning the player is moving either left or right
+		{
+			spriteAnimator.Play("walkSide");
+			if (direction.X < 0) // player is moving left so we flip the sprite horizontaly to the left.
+			{
+				spriteAnimator.FlipH = true;
+			}
+			else // player is moving right so we flip the sprite horizontaly to the right.
+			{
+				spriteAnimator.FlipH = false;
+			}
+		}
+		if (direction.Y != Vector2.Zero.Y) // y direction is not zero meaning the player is moving either up or down.
+		{
+			if (direction.Y < 0) // player is moving up so we play the walkUp animation.
+			{
+				spriteAnimator.Play("walkUp");
+			}
+			else // player is moving down so we play the walkDown animation.
+			{
+				spriteAnimator.Play("walkDown");
+			}
+		}
+		lastAnimation = spriteAnimator.Animation;
 		MoveAndSlide();
 	}
 

@@ -1,9 +1,12 @@
 using Godot;
+
+[Tool]
 public partial class ODoor : Node2D
 {
 	// # Private Variables # //
 	private Area2D _doorInteractionArea;
 	private ODoor _linkedDoor;
+	private Vector2 _localExitMarkerPosition;
 	// # ----------------- # //
 
 
@@ -20,6 +23,11 @@ public partial class ODoor : Node2D
 		{
 			_linkedDoor = value;
 		}
+	}
+	[Export] public Vector2 LocalExitMarkerPosition
+	{
+		get => _localExitMarkerPosition;
+		set => _localExitMarkerPosition = value;
 	}
 	// # ---------------- # //
 
@@ -49,5 +57,6 @@ public partial class ODoor : Node2D
 			GD.PrintErr($"[ODoor.cs/Ready] - Failed to find a local exit marker for door: [{this.Name}]. Make sure to add one as a child of the door.");
 			return;
 		}
+		_localExitMarker.Position = _localExitMarkerPosition;
 	}
 }
