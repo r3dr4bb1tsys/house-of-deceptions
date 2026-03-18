@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://byg4aciowuk06"]
+
+[ext_resource type="Script" uid="uid://cw6wu3vpt8ymj" path="res://assets/objects/o_generic/OGeneric.cs" id="1_lmym4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2wnn"]
+
+[node name="OGeneric" type="Node2D" unique_id=1428563663]
+script = ExtResource("1_lmym4")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=772187254]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=858705259]
+shape = SubResource("RectangleShape2D_x2wnn")

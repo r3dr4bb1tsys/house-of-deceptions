@@ -1,4 +1,4 @@
-// TODO: This is a generic todo, so it applied to all the .cs files in the project, please refactor the code so it's more clean and readable, add more comments where needed and remove any redundant code. 
+// TODO: This is a generic todo, so it applies to all the .cs files in the project, please refactor the code so it's more clean and readable, add more comments where needed and remove any redundant code. 
 
 using Godot;
 public partial class OPlayer : CharacterBody2D
