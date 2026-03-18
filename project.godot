@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="House of Deceptions"
+run/main_scene="uid://c07u7jeypcgmn"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
