@@ -13,7 +13,12 @@ config_version=5
 config/name="House of Deceptions"
 run/main_scene="uid://c07u7jeypcgmn"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=3
 
 [dotnet]
 
@@ -70,3 +75,4 @@ renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/decals/filter=0
 textures/light_projectors/filter=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

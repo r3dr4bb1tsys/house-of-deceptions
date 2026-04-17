@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://d1gwx3yo2vkpt"]
+
+[ext_resource type="Theme" uid="uid://d0kgsg4d3qdve" path="res://assets/Themes/menu_button_theme.tres" id="1_edl1t"]
+[ext_resource type="Theme" uid="uid://c5ccfk2vewxm1" path="res://assets/Themes/menu_label_theme.tres" id="2_eud75"]
+[ext_resource type="Theme" uid="uid://cvnlmnb07jlc1" path="res://assets/Themes/menu_hslider_theme.tres" id="3_7b1k0"]
+
+[node name="GameMenu" type="Control" unique_id=1180639440]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="main_container" type="BoxContainer" parent="." unique_id=51625837]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="button_container" type="VBoxContainer" parent="main_container" unique_id=1367505843]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="game_paused_label" type="Label" parent="main_container/button_container" unique_id=778841511]
+layout_mode = 2
+theme = ExtResource("2_eud75")
+theme_override_font_sizes/font_size = 70
+text = "Game Paused"
+
+[node name="resume_button" type="Button" parent="main_container/button_container" unique_id=1017943752]
+layout_mode = 2
+theme = ExtResource("1_edl1t")
+text = "Resume"
+
+[node name="settings_button" type="Button" parent="main_container/button_container" unique_id=940977546]
+layout_mode = 2
+theme = ExtResource("1_edl1t")
+text = "Settings"
+
+[node name="save_and_exit_button" type="Button" parent="main_container/button_container" unique_id=88295671]
+layout_mode = 2
+theme = ExtResource("1_edl1t")
+text = "Save and Exit"
+
+[node name="quit_buttons" type="Button" parent="main_container/button_container" unique_id=642307204]
+layout_mode = 2
+theme = ExtResource("1_edl1t")
+text = "Quit"
+
+[node name="settings_container" type="BoxContainer" parent="." unique_id=218648636]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="settings_label_container" type="GridContainer" parent="settings_container" unique_id=1731522384]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="settings_container/settings_label_container" unique_id=925689472]
+layout_mode = 2
+theme = ExtResource("2_eud75")
+text = "Volume:"
+
+[node name="settings_value_container" type="GridContainer" parent="settings_container" unique_id=2110891212]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSlider" type="HSlider" parent="settings_container/settings_value_container" unique_id=2056190304]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_7b1k0")
+ticks_position = 1

@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://cvnlmnb07jlc1"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_jpjx2"]
+color = Color(0.20511743, 0.20511743, 0.20511743, 1)
+
+[resource]
+HSlider/icons/grabber = null
+HSlider/styles/slider = SubResource("StyleBoxLine_jpjx2")

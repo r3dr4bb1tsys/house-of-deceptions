@@ -1,0 +1,18 @@
+[gd_resource type="Theme" format=3 uid="uid://d0kgsg4d3qdve"]
+
+[ext_resource type="FontFile" uid="uid://scdiklkki75s" path="res://assets/Themes/Fonts/DirtyEnough-Regular.ttf" id="1_y0ml0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u8l4h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y0ml0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6dsbi"]
+
+[resource]
+Button/colors/font_color = Color(0.65833926, 0.6583402, 0.65833956, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("1_y0ml0")
+Button/styles/hover = SubResource("StyleBoxEmpty_u8l4h")
+Button/styles/normal = SubResource("StyleBoxEmpty_y0ml0")
+Button/styles/pressed = SubResource("StyleBoxEmpty_6dsbi")
