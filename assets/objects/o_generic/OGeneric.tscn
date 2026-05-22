@@ -7,7 +7,7 @@
 [node name="OGeneric" type="Node2D" unique_id=1428563663]
 script = ExtResource("1_lmym4")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=772187254]
+[node name="objArea" type="Area2D" parent="." unique_id=772187254]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=858705259]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="objArea" unique_id=858705259]
 shape = SubResource("RectangleShape2D_x2wnn")

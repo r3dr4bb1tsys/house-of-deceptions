@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dewshgwg3xfr8" path="res://assets/objects/o_player/OPlayer.cs" id="1_iv8vd"]
 [ext_resource type="Texture2D" uid="uid://cyomymrgit5k7" path="res://assets/objects/o_player/s_player.png" id="1_o07kb"]
+[ext_resource type="PackedScene" uid="uid://d1gwx3yo2vkpt" path="res://assets/UiControls/game_menu.tscn" id="3_xgc40"]
+[ext_resource type="Theme" uid="uid://do1riuq1kmcyn" path="res://assets/Themes/tab_theme.tres" id="4_ufs0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_puxa6"]
 atlas = ExtResource("1_o07kb")
@@ -145,7 +147,16 @@ animations = [{
 size = Vector2(12, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iv8vd"]
-radius = 16.124516
+
+[sub_resource type="LabelSettings" id="LabelSettings_xgc40"]
+font_size = 13
+
+[sub_resource type="LabelSettings" id="LabelSettings_2mr2l"]
+font_size = 13
+
+[sub_resource type="LabelSettings" id="LabelSettings_ufs0r"]
+font_size = 13
+font_color = Color(1.2318419, 0, 0, 1)
 
 [node name="oPlayer" type="CharacterBody2D" unique_id=831620466 groups=["Player"]]
 script = ExtResource("1_iv8vd")
@@ -160,12 +171,72 @@ frame_progress = 0.22707689
 position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_28quv")
 
-[node name="playerCamera" type="Camera2D" parent="." unique_id=409858452]
-z_index = 100
-zoom = Vector2(4, 4)
-
 [node name="playerInteactionArea" type="Area2D" parent="." unique_id=931368051 groups=["PlayerInteactionArea"]]
 
 [node name="playerInteractionShape" type="CollisionShape2D" parent="playerInteactionArea" unique_id=1403150004 groups=["PlayerInteractionShape"]]
 position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_iv8vd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=358472109]
+
+[node name="GameMenu" parent="CanvasLayer" unique_id=1180639440 instance=ExtResource("3_xgc40")]
+visible = false
+
+[node name="tab_control" type="Control" parent="CanvasLayer" unique_id=427377980]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 10.0
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/tab_control" unique_id=742862776]
+layout_mode = 1
+offset_right = 223.0
+offset_bottom = 49.0
+theme = ExtResource("4_ufs0r")
+current_tab = 0
+clip_tabs = false
+all_tabs_in_front = true
+switch_on_drag_hover = false
+tab_focus_mode = 0
+tab_0/title = "Info"
+tab_1/title = "Key Binds"
+tab_2/title = "Errors"
+tab_3/title = "Body Info"
+
+[node name="debug_info_text" type="Label" parent="CanvasLayer/tab_control/TabContainer" unique_id=2105546298]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_xgc40")
+metadata/_tab_index = 0
+metadata/_tab_name = "Info"
+
+[node name="debug_keybind_text" type="Label" parent="CanvasLayer/tab_control/TabContainer" unique_id=1855605250]
+visible = false
+layout_mode = 2
+text = "[PLAYER]
+W -> Move up
+S -> Move down
+A -> Move left
+D -> Move right
+E -> Interact with obj
+
+[DEBUG]
+ctrl+shift+c -> clear error history"
+label_settings = SubResource("LabelSettings_2mr2l")
+metadata/_tab_index = 1
+metadata/_tab_name = "Key Binds"
+
+[node name="debug_error_text" type="Label" parent="CanvasLayer/tab_control/TabContainer" unique_id=1362376533]
+visible = false
+layout_mode = 2
+label_settings = SubResource("LabelSettings_ufs0r")
+metadata/_tab_index = 2
+metadata/_tab_name = "Errors"
+
+[node name="debug_body_info_text" type="Label" parent="CanvasLayer/tab_control/TabContainer" unique_id=919199489]
+visible = false
+layout_mode = 2
+label_settings = SubResource("LabelSettings_2mr2l")
+metadata/_tab_index = 3
+metadata/_tab_name = "Body Info"

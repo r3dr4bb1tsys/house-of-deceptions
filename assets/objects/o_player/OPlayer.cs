@@ -1,5 +1,7 @@
 // TODO: This is a generic todo, so it applies to all the .cs files in the project, please refactor the code so it's more clean and readable, add more comments where needed and remove any redundant code. 
 
+using System;
+using System.Collections.Generic;
 using Godot;
 public partial class OPlayer : CharacterBody2D
 {
@@ -20,6 +22,14 @@ public partial class OPlayer : CharacterBody2D
 	private ODoor _enteredDoor;
 	private AnimatedSprite2D spriteAnimator;
 	private string lastAnimation = string.Empty;
+
+//TODO: debug only variables
+	private Label debug_body_info_text = null;
+	private Label debug_error_text = null;
+	private Label debug_info_text = null;
+	private string debug_info;
+	private Area2D area2D = null;
+	private Vector2 newPosition;
 	// # ----------------- # //
 
 	// # public variables # // 
@@ -32,13 +42,13 @@ public partial class OPlayer : CharacterBody2D
 	[Export] public int Speed = 50;
 	// # ------- # //
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		// check if the playerInteactionArea is inside the player, if not return an error message.
 		Area2D playerInteactionArea = FindChild("playerInteactionArea", true) as Area2D;
 		if (playerInteactionArea == null)
 		{
-			GD.PrintErr($"[OPlayer.cs/_Ready] - Failed to find the interaction area for the player [{this.Name}]. Make sure to add one as a child of the player.");
+			ErrorHandler.ThrowError($"[OPlayer.cs/_Ready] - Failed to find the interaction area for the player [{this.Name}]. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR);
 			return;
 		}
 		playerInteactionArea.Connect("area_entered", new Callable(this, nameof(InteractionAreaEntered)));
@@ -48,7 +58,7 @@ public partial class OPlayer : CharacterBody2D
 		CollisionShape2D playerInteractionShape = FindChild("playerInteractionShape", true) as CollisionShape2D;
 		if (playerInteractionShape == null)
 		{
-			GD.PrintErr($"Failed to find the interaction shape for the player [{this.Name}]. Make sure to add one as a child of the player.");
+			ErrorHandler.ThrowError($"Failed to find the interaction shape for the player [{this.Name}]. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR);
 			return;
 		}
 
@@ -56,30 +66,63 @@ public partial class OPlayer : CharacterBody2D
 		spriteAnimator = FindChild("spriteAnimator", true) as AnimatedSprite2D;
 		if (spriteAnimator == null)
 		{
-			GD.PrintErr($"[OPlayer.cs/_Ready] - Failed to find the sprite animator for the player. Make sure to add one as a child of the player.");
+			ErrorHandler.ThrowError($"[OPlayer.cs/_Ready] - Failed to find the sprite animator for the player. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR);
 			return;
 		}
-    }
+		
+
+		//TODO: debug only, remove or add a check for debug and release builds.
+		// check if the debug_error_text is inside the player, if not return an error message.
+		debug_error_text = FindChild("debug_error_text", true) as Label;
+		if (debug_error_text == null)
+		{
+			ErrorHandler.ThrowError($"[OPlayer.cs/_Ready] - Failed to find the debug_error_text label. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR);
+		}
+		
+		// check if the debug_info_text is inside the player, if not return an error message.
+		debug_info_text = FindChild("debug_info_text", true) as Label;
+		if (debug_info_text == null)
+		{
+			ErrorHandler.ThrowError($"[OPlayer.cs/_Ready] - Failed to find the debug_info_text label. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR);
+		}
+		
+		// check if the debug_body_info_text is inside the player, if not return an error message.
+		debug_body_info_text = FindChild("debug_body_info_text", true) as Label;
+		if (debug_body_info_text == null)
+		{
+			ErrorHandler.ThrowError($"[OPlayer.cs/_Ready] - Failed to find the debug_body_info_text label. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR);
+		}
+
+		EventHandler.ListenForEvent(EventHandler.EventType.ERROR_OCCURRED, UpdateDebugErrorText);
+		EventHandler.ListenForEvent(EventHandler.EventType.PLAYER_INFO_UPDATED, UpdateDebugInfoText);
+		EventHandler.ListenForEvent<Dictionary<string, string>>(EventHandler.EventType.AREA_ENTERED, UpdateBodyInfoText);
+		EventHandler.TriggerEvent(EventHandler.EventType.PLAYER_INFO_UPDATED); // just to trigger an initial update of the debug_info_text.
+	}
 
 
-	// standard physics process that runs every frame.
-	public override void _PhysicsProcess(double delta)
+
+
+    // standard physics process that runs every frame.
+    public override void _PhysicsProcess(double delta)
 	{
+		//* IMPORTANT NOTE: This is a basic check for player movement. This cheks if the player is allowed to move or not. 
+		if (SharedVariables.canPlayerMove == false) return;
+
 		// collect the direction of the player based on the action pressed.
 		var direction = Input.GetVector(PlayerActions.MoveLeft, PlayerActions.MoveRight, PlayerActions.MoveUp, PlayerActions.MoveDown);
-		
+
 		// normalize the player velocity so that diagonal movements isnt sqrt(2) faster. 
 		Velocity = direction.Normalized() * Speed;
 
 		// apply the correct animation based on the player movement direction.
-		
+
 		if (Velocity == Vector2.Zero) // velocity is zero meaning the player is not moving, therefore the player is idle, so we play the idle animation. 
 		{
-			if (lastAnimation.ToLower().Contains("side"))	// the last animation was walkSide;
+			if (lastAnimation.ToLower().Contains("side"))   // the last animation was walkSide;
 			{
 				spriteAnimator.Play("sideIdle");
 			}
-			else	// the last animation was either walkdown or walkup. 
+			else    // the last animation was either walkdown or walkup. 
 			{
 				if (lastAnimation.ToLower().Contains("up"))
 				{
@@ -91,7 +134,7 @@ public partial class OPlayer : CharacterBody2D
 				}
 			}
 		}
-		if (direction.X != Vector2.Zero.X)	// x direction is not zero meaning the player is moving either left or right
+		if (direction.X != Vector2.Zero.X)  // x direction is not zero meaning the player is moving either left or right
 		{
 			spriteAnimator.Play("walkSide");
 			if (direction.X < 0) // player is moving left so we flip the sprite horizontaly to the left.
@@ -116,52 +159,65 @@ public partial class OPlayer : CharacterBody2D
 		}
 		lastAnimation = spriteAnimator.Animation;
 		MoveAndSlide();
+
+		//TODO: debug only, remove or add a check for debug and release builds.
+		EventHandler.TriggerEvent(EventHandler.EventType.PLAYER_INFO_UPDATED); // trigger the debug_info_update for every frame
 	}
 
 	public override void _Input(InputEvent @event)
-    {
+	{
 		// Handle the door's interaction input. 
 		if (@event.IsActionPressed(PlayerActions.Interact))
 		{
 			// check the door is reade to teleport the player, if not, return an error message. This is crucial as we dont want the player to be teleported even if they're not colliding with any door.
 			if (this._readyToTeleport == false)
 			{
-				GD.PrintErr($"[OPlayer.cs/Interaction Input] - The player is not ready for teleportation as it's not colliding with a valid door. this._readyToTeleport: {this._readyToTeleport}\t returning...");
+				ErrorHandler.ThrowError($"[OPlayer.cs/Interaction Input] - The player is not ready for teleportation as it's not colliding with a valid door. this._readyToTeleport: {this._readyToTeleport}", ErrorHandler.ErrorType.GENERIC_ERROR);
 				return;
 			}
 
 			// teleport the player to the new position.
-			Vector2 newPosition = _enteredDoor.LinkedDoor._localExitMarker.GlobalPosition;
+			newPosition = _enteredDoor.LinkedDoor._localExitMarker.GlobalPosition; // FIXME: For some reason this returns the error 002 (file: E:\GodotGames\house-of-deceptions\LOGS\HOD_error_log.docx)
 			GD.Print($"[OPlayer.cs/_Input] - Teleporting player to the new door's position: [{newPosition}]");
 			this.TeleportTo(newPosition);
 		}
-    }
-	
+
+		//TODO: debug only, remove or add a check for debug and release builds.
+		if (@event.IsActionPressed("debug_clear_error"))
+		{
+			debug_error_text.Text = string.Empty;
+			ErrorHandler.GetErrorHistory().Clear();
+		}
+	}
+
 
 	// # Signals # //
 	private void InteractionAreaEntered(Area2D area)
 	{
 		// get the door from wich is parent of the area that entered the player interaction area.
+		area2D = area;	//TODO: debug only, remove or add a check for debug and release builds.
 		_enteredDoor = area.GetParent() as ODoor;
-
-		GD.Print(new string('-', 100));
-		GD.Print($"[OPlayer.cs/Area entered signal] - The area [{area.Name}] has entered [{this.Name}]'s interaction area.");
-		GD.Print($"[OPlayer.cs/Area entered signal] - [{_enteredDoor.Name}]'s groups: {string.Join(",", _enteredDoor.GetGroups())}");
+		newPosition = _enteredDoor.LinkedDoor._localExitMarker.GlobalPosition;	// FIXME: For some reason this returns the error 001 (file: E:\GodotGames\house-of-deceptions\LOGS\HOD_error_log.docx)
 		if (_enteredDoor.IsInGroup("Door"))
 		{
 			this._readyToTeleport = true;
-			GD.Print($"[OPlayer.cs/Area entered signal] - The player is colliding with door: [{_enteredDoor.Name}].");
 		}
-		GD.Print($"[OPlayer.cs/Area entered signal] - this._readyToTeleport has been set to: {this._readyToTeleport}\n" + new string('-', 100) + "\n");
+
+		//TODO: debug only, remove or add a check for debug and release builds.
+		EventHandler.TriggerEvent(EventHandler.EventType.PLAYER_INFO_UPDATED);
 	}
 	private void InteractionAreaExited(Area2D area)
 	{
 		this._readyToTeleport = false;
-		GD.Print(new string('-', 100));
-		GD.Print($"[OPlayer.cs/Area exited signal] - The player is no longer colliding with a door.");
-		GD.Print($"[OPlayer.cs/Area exited signal] - this._readyToTeleport has been set to: {this._readyToTeleport}\n" + new string('-', 100) + "\n");	
+		
+		//TODO: debug only, remove or add a check for debug and release builds.
+		area2D = null;
+		_enteredDoor = null;
+		newPosition = Vector2.Zero;
+		EventHandler.TriggerEvent(EventHandler.EventType.PLAYER_INFO_UPDATED);
 	}
 	// # -------- # //
+	
 
 	/// <summary>
 	/// Standard fucntion for player teleportation. 
@@ -169,6 +225,50 @@ public partial class OPlayer : CharacterBody2D
 	/// <param name="newPosition"></param>
 	public void TeleportTo(Vector2 newPosition)
 	{
-		Position = newPosition;
+		Position = newPosition.Round();
+	}
+
+//TODO: debug only, remove or add a check for debug and release builds.
+	private void UpdateDebugErrorText()
+	{
+		debug_error_text.Text = string.Empty;
+		foreach (string error in ErrorHandler.GetErrorHistory())
+		{
+			debug_error_text.Text = string.Join("\n", ErrorHandler.GetErrorHistory());
+		}
+	}
+
+//TODO: debug only, remove or add a check for debug and release builds.
+	private void UpdateDebugInfoText()
+	{
+		debug_info =
+			$"""
+			[PLAYER]
+			[Player Position]: {this.Position.Round()}
+			[Current Velocity]: {this.Velocity}
+			[Interacting With]: {area2D?.Name ?? "None"}
+			[this._readyToTeleport]: {this._readyToTeleport}
+			
+			--Player Animation--
+			[Current Animation]: {spriteAnimator.Animation}
+			[Flipped]: {spriteAnimator.FlipH}
+			
+			[DOOR]
+			[Door Name]: {_enteredDoor?.Name ?? "None"}
+			[Door Out Position]: {newPosition.Round()}
+			[Linked Door]: {_enteredDoor?.LinkedDoor?.Name ?? "None"}
+
+			[ERROR]
+			[Error Count]: {ErrorHandler.GetErrorHistory().Count}
+			""";
+
+		debug_info_text.Text = debug_info;
+	}
+
+//TODO: debug only, remove or add a check for debug and release builds.
+    private void UpdateBodyInfoText(Dictionary<string, string> dictionary)
+	{
+		dictionary.TryGetValue("body_name", out string body_name); // body name
+		debug_body_info_text.Text = body_name;
 	}
 }

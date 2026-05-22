@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d1gwx3yo2vkpt"]
 
 [ext_resource type="Theme" uid="uid://d0kgsg4d3qdve" path="res://assets/Themes/menu_button_theme.tres" id="1_edl1t"]
+[ext_resource type="Script" uid="uid://c5vitj21h0fwy" path="res://assets/UiControls/GameMenu.cs" id="1_qxqtq"]
 [ext_resource type="Theme" uid="uid://c5ccfk2vewxm1" path="res://assets/Themes/menu_label_theme.tres" id="2_eud75"]
 [ext_resource type="Theme" uid="uid://cvnlmnb07jlc1" path="res://assets/Themes/menu_hslider_theme.tres" id="3_7b1k0"]
 
@@ -11,6 +12,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qxqtq")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1710401957]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="main_container" type="BoxContainer" parent="." unique_id=51625837]
 layout_mode = 1
@@ -47,7 +58,7 @@ layout_mode = 2
 theme = ExtResource("1_edl1t")
 text = "Save and Exit"
 
-[node name="quit_buttons" type="Button" parent="main_container/button_container" unique_id=642307204]
+[node name="quit_button" type="Button" parent="main_container/button_container" unique_id=642307204]
 layout_mode = 2
 theme = ExtResource("1_edl1t")
 text = "Quit"
