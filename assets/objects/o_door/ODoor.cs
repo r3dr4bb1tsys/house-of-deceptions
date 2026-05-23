@@ -4,15 +4,14 @@ using Godot;
 public partial class ODoor : Node2D
 {
 	// # Private Variables # //
-	private Area2D _doorInteractionArea;
-	private ODoor _linkedDoor;
-	private Vector2 _localExitMarkerPosition;
+	private Area2D _doorInteractionArea = null;
+	private ODoor _linkedDoor = null;
+	private Vector2 _localExitMarkerPosition = Vector2.Zero;
 	// # ----------------- # //
 
 
 	// # Public Variables # //
-	public Marker2D _localExitMarker;
-	public Marker2D _linkedExitMarker;
+	public Marker2D _localExitMarker = null;
 	// # ---------------- # // 
 
 	// # Export Varianles # //

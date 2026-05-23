@@ -1,7 +1,5 @@
 // TODO: This is a generic todo, so it applies to all the .cs files in the project, please refactor the code so it's more clean and readable, add more comments where needed and remove any redundant code. 
 
-using System;
-using System.Collections.Generic;
 using Godot;
 public partial class OPlayer : CharacterBody2D
 {
@@ -24,12 +22,12 @@ public partial class OPlayer : CharacterBody2D
 	private string lastAnimation = string.Empty;
 
 //TODO: debug only variables
-	private Label debug_body_info_text = null;
 	private Label debug_error_text = null;
 	private Label debug_info_text = null;
 	private string debug_info;
 	private Area2D area2D = null;
 	private Vector2 newPosition;
+	private Camera2D mainCameraRef = null;
 	// # ----------------- # //
 
 	// # public variables # // 
@@ -70,6 +68,15 @@ public partial class OPlayer : CharacterBody2D
 			return;
 		}
 		
+		mainCameraRef = GetParent().FindChild("mainSceneCamera", true) as Camera2D;
+		if (mainCameraRef == null)
+		{
+			ErrorHandler.ThrowError("[OPlayer.cs/_Ready] - Failed to retrieve the reference to the main camera. Make sure to add one as a child of the main scene.", ErrorHandler.ErrorType.GENERIC_ERROR);
+			return;
+		}
+
+
+
 
 		//TODO: debug only, remove or add a check for debug and release builds.
 		// check if the debug_error_text is inside the player, if not return an error message.
@@ -77,6 +84,7 @@ public partial class OPlayer : CharacterBody2D
 		if (debug_error_text == null)
 		{
 			ErrorHandler.ThrowError($"[OPlayer.cs/_Ready] - Failed to find the debug_error_text label. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR);
+			return;
 		}
 		
 		// check if the debug_info_text is inside the player, if not return an error message.
@@ -84,18 +92,11 @@ public partial class OPlayer : CharacterBody2D
 		if (debug_info_text == null)
 		{
 			ErrorHandler.ThrowError($"[OPlayer.cs/_Ready] - Failed to find the debug_info_text label. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR);
-		}
-		
-		// check if the debug_body_info_text is inside the player, if not return an error message.
-		debug_body_info_text = FindChild("debug_body_info_text", true) as Label;
-		if (debug_body_info_text == null)
-		{
-			ErrorHandler.ThrowError($"[OPlayer.cs/_Ready] - Failed to find the debug_body_info_text label. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR);
+			return;
 		}
 
 		EventHandler.ListenForEvent(EventHandler.EventType.ERROR_OCCURRED, UpdateDebugErrorText);
 		EventHandler.ListenForEvent(EventHandler.EventType.PLAYER_INFO_UPDATED, UpdateDebugInfoText);
-		EventHandler.ListenForEvent<Dictionary<string, string>>(EventHandler.EventType.AREA_ENTERED, UpdateBodyInfoText);
 		EventHandler.TriggerEvent(EventHandler.EventType.PLAYER_INFO_UPDATED); // just to trigger an initial update of the debug_info_text.
 	}
 
@@ -166,7 +167,7 @@ public partial class OPlayer : CharacterBody2D
 
 	public override void _Input(InputEvent @event)
 	{
-		// Handle the door's interaction input. 
+		//* Handle the door's interaction input. 
 		if (@event.IsActionPressed(PlayerActions.Interact))
 		{
 			// check the door is reade to teleport the player, if not, return an error message. This is crucial as we dont want the player to be teleported even if they're not colliding with any door.
@@ -177,10 +178,24 @@ public partial class OPlayer : CharacterBody2D
 			}
 
 			// teleport the player to the new position.
-			newPosition = _enteredDoor.LinkedDoor._localExitMarker.GlobalPosition; // FIXME: For some reason this returns the error 002 (file: E:\GodotGames\house-of-deceptions\LOGS\HOD_error_log.docx)
-			GD.Print($"[OPlayer.cs/_Input] - Teleporting player to the new door's position: [{newPosition}]");
+			newPosition = _enteredDoor.LinkedDoor._localExitMarker.GlobalPosition;
 			this.TeleportTo(newPosition);
+
+
+			//* Change the camera's parent to the linked door's parent, and switch it's position to the new parent's position.
+			Node2D  doorParent = _enteredDoor.LinkedDoor.GetParent() as Node2D; // get the door parent
+			Node2D newParent = doorParent.GetParent() as Node2D;
+			if (newParent == null || doorParent == null)
+			{
+				ErrorHandler.ThrowError("[OPlayer.cs/_Input] - Failed to get a reference to the door's parent.", ErrorHandler.ErrorType.GENERIC_ERROR);
+				return;
+			}
+			mainCameraRef.Reparent(newParent);
+			mainCameraRef.GlobalPosition = newParent.Position; // switch the camera position.
+
+			EventHandler.TriggerEvent(EventHandler.EventType.PLAYER_INFO_UPDATED);
 		}
+		
 
 		//TODO: debug only, remove or add a check for debug and release builds.
 		if (@event.IsActionPressed("debug_clear_error"))
@@ -197,7 +212,7 @@ public partial class OPlayer : CharacterBody2D
 		// get the door from wich is parent of the area that entered the player interaction area.
 		area2D = area;	//TODO: debug only, remove or add a check for debug and release builds.
 		_enteredDoor = area.GetParent() as ODoor;
-		newPosition = _enteredDoor.LinkedDoor._localExitMarker.GlobalPosition;	// FIXME: For some reason this returns the error 001 (file: E:\GodotGames\house-of-deceptions\LOGS\HOD_error_log.docx)
+		newPosition = _enteredDoor.LinkedDoor._localExitMarker.GlobalPosition;
 		if (_enteredDoor.IsInGroup("Door"))
 		{
 			this._readyToTeleport = true;
@@ -244,7 +259,7 @@ public partial class OPlayer : CharacterBody2D
 		debug_info =
 			$"""
 			[PLAYER]
-			[Player Position]: {this.Position.Round()}
+			[Player Position]: {this?.Position ?? Vector2.Zero}
 			[Current Velocity]: {this.Velocity}
 			[Interacting With]: {area2D?.Name ?? "None"}
 			[this._readyToTeleport]: {this._readyToTeleport}
@@ -255,20 +270,20 @@ public partial class OPlayer : CharacterBody2D
 			
 			[DOOR]
 			[Door Name]: {_enteredDoor?.Name ?? "None"}
-			[Door Out Position]: {newPosition.Round()}
+			[Door Out Position]: {this?.newPosition ?? Vector2.Zero}
 			[Linked Door]: {_enteredDoor?.LinkedDoor?.Name ?? "None"}
+
+			[CAMERA]
+			[Camera Name]: {mainCameraRef?.Name ?? "None"}
+			[Position]: {mainCameraRef?.GlobalPosition ?? Vector2.Zero}
+			[Parent]: {mainCameraRef.GetParent()?.Name ?? "None"}
+			[Parent's type]: {mainCameraRef.GetParent()?.GetType() ?? null}
+			[Parent's position]: {(mainCameraRef?.GetParent() as Node2D)?.GlobalPosition ?? Vector2.Zero}
 
 			[ERROR]
 			[Error Count]: {ErrorHandler.GetErrorHistory().Count}
 			""";
 
 		debug_info_text.Text = debug_info;
-	}
-
-//TODO: debug only, remove or add a check for debug and release builds.
-    private void UpdateBodyInfoText(Dictionary<string, string> dictionary)
-	{
-		dictionary.TryGetValue("body_name", out string body_name); // body name
-		debug_body_info_text.Text = body_name;
 	}
 }

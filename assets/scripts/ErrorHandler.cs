@@ -33,9 +33,9 @@ public partial class ErrorHandler : Node
 		*/
 		string formattedError = $"[{errorType}]: {errorMessage}\n";
 		errorHistory.Add(formattedError);
+		GD.PrintErr(formattedError);
 
 		// trigger an event to notify listeners that a new error has occured.
 		EventHandler.TriggerEvent(EventHandler.EventType.ERROR_OCCURRED);
-		return;
 	}
 }
