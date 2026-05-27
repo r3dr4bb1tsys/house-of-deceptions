@@ -150,6 +150,7 @@ size = Vector2(12, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_iv8vd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xgc40"]
+line_spacing = 0.0
 font_size = 13
 
 [sub_resource type="LabelSettings" id="LabelSettings_2mr2l"]
@@ -213,7 +214,7 @@ vertical_alignment = 1
 [node name="GameMenu" parent="CanvasLayer" unique_id=1180639440 instance=ExtResource("3_xgc40")]
 visible = false
 
-[node name="tab_control" type="Control" parent="CanvasLayer" unique_id=427377980]
+[node name="tabControl" type="Control" parent="CanvasLayer" unique_id=427377980]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 20.0
@@ -221,27 +222,29 @@ offset_top = 10.0
 offset_right = 20.0
 offset_bottom = 10.0
 
-[node name="TabContainer" type="TabContainer" parent="CanvasLayer/tab_control" unique_id=742862776]
-layout_mode = 1
-offset_right = 223.0
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/tabControl" unique_id=742862776]
+layout_mode = 0
+offset_right = 479.0
 offset_bottom = 49.0
 theme = ExtResource("4_ufs0r")
-current_tab = 0
+current_tab = 2
 clip_tabs = false
 all_tabs_in_front = true
 switch_on_drag_hover = false
 tab_focus_mode = 0
 tab_0/title = "Info"
-tab_1/title = "Key Binds"
+tab_1/title = "Keybinds"
 tab_2/title = "Errors"
 
-[node name="debug_info_text" type="Label" parent="CanvasLayer/tab_control/TabContainer" unique_id=2105546298]
+[node name="debug_info_text" type="Label" parent="CanvasLayer/tabControl/TabContainer" unique_id=2105546298]
+visible = false
 layout_mode = 2
 label_settings = SubResource("LabelSettings_xgc40")
+justification_flags = 160
 metadata/_tab_index = 0
 metadata/_tab_name = "Info"
 
-[node name="debug_keybind_text" type="Label" parent="CanvasLayer/tab_control/TabContainer" unique_id=1855605250]
+[node name="debug_keybind_text" type="Label" parent="CanvasLayer/tabControl/TabContainer" unique_id=1855605250]
 visible = false
 layout_mode = 2
 text = "[PLAYER]
@@ -255,12 +258,13 @@ E → Interact with obj
 CTRL+SHIFT+D → toggle debug window
 CTRL+SHIFT+C → clear error history"
 label_settings = SubResource("LabelSettings_2mr2l")
+justification_flags = 160
 metadata/_tab_index = 1
-metadata/_tab_name = "Key Binds"
+metadata/_tab_name = "Keybinds"
 
-[node name="debug_error_text" type="Label" parent="CanvasLayer/tab_control/TabContainer" unique_id=1362376533]
-visible = false
+[node name="debug_error_text" type="Label" parent="CanvasLayer/tabControl/TabContainer" unique_id=1362376533]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_ufs0r")
+justification_flags = 160
 metadata/_tab_index = 2
 metadata/_tab_name = "Errors"

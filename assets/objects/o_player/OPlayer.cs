@@ -12,12 +12,13 @@ public partial class OPlayer: CharacterBody2D
         public const string MoveLeft = "playerMoveLeft";
         public const string MoveUp = "playerMoveUp";
         public const string MoveDown = "playerMoveDown";
+        public const string Run = "playerRun";
         public const string Interact = "playerInteract";
     }
 
     // # Private Variables # //
     #region Private Variables
-    private ODoor _enteredDoor;
+    private ODoor enteredDoor;
     private AnimatedSprite2D spriteAnimator;
     private string lastAnimation = string.Empty;
     #endregion
@@ -31,14 +32,14 @@ public partial class OPlayer: CharacterBody2D
     private Area2D area2D = null;
     private Vector2 newPosition;
     private Camera2D mainCameraRef = null;
-    private Control tab_control = null;
-    private string obj_name = string.Empty;
+    private Control tabControl = null;
+    private string objName = string.Empty;
     #endregion
     // # ----------------- # //
 
     // # public variables # // 
     // this variable is used to check wether the player is ready for teleportation or not, this is used in door transportation for example. 
-    public bool _readyToTeleport = false;
+    public bool readyToTeleport = false;
     // # ---------------- # //
 
     // # Exports # //
@@ -48,6 +49,8 @@ public partial class OPlayer: CharacterBody2D
 
     public override void _Ready( )
     {
+        base._Ready( );
+
         // check if the playerInteactionArea is inside the player, if not return an error message.
         Area2D playerInteactionArea = FindChild("playerInteactionArea", true) as Area2D;
         if( playerInteactionArea == null )
@@ -55,15 +58,17 @@ public partial class OPlayer: CharacterBody2D
             ErrorHandler.ThrowError( $"[OPlayer.cs/_Ready] - Failed to find the interaction area for the player [{this.Name}]. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
             return;
         }
-        playerInteactionArea.Connect( "area_entered", new Callable( this, nameof( InteractionAreaEntered ) ) );
-        playerInteactionArea.Connect( "area_exited", new Callable( this, nameof( InteractionAreaExited ) ) );
+        else
+        {
+            playerInteactionArea.Connect( "area_entered", new Callable( this, nameof( InteractionAreaEntered ) ) );
+            playerInteactionArea.Connect( "area_exited", new Callable( this, nameof( InteractionAreaExited ) ) );
+        }
 
         // Check if the playerInteractionShape is inside the player, if not return an error message.
         CollisionShape2D playerInteractionShape = FindChild("playerInteractionShape", true) as CollisionShape2D;
         if( playerInteractionShape == null )
         {
             ErrorHandler.ThrowError( $"Failed to find the interaction shape for the player [{this.Name}]. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
-            return;
         }
 
         // check if the spriteAnimator is inside the player, if not return an error message. 
@@ -71,14 +76,13 @@ public partial class OPlayer: CharacterBody2D
         if( spriteAnimator == null )
         {
             ErrorHandler.ThrowError( $"[OPlayer.cs/_Ready] - Failed to find the sprite animator for the player. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
-            return;
         }
 
+        // search for the main camera inside the main scene, if fails to find one return an error message.
         mainCameraRef = GetParent( ).FindChild( "mainSceneCamera", true ) as Camera2D;
         if( mainCameraRef == null )
         {
             ErrorHandler.ThrowError( "[OPlayer.cs/_Ready] - Failed to retrieve the reference to the main camera. Make sure to add one as a child of the main scene.", ErrorHandler.ErrorType.GENERIC_ERROR );
-            return;
         }
 
         //TODO debug only, remove or add a check for debug and release builds.
@@ -87,7 +91,6 @@ public partial class OPlayer: CharacterBody2D
         if( debug_error_text == null )
         {
             ErrorHandler.ThrowError( $"[OPlayer.cs/_Ready] - Failed to find the debug_error_text label. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
-            return;
         }
 
         // check if the debug_info_text is inside the player, if not return an error message.
@@ -95,20 +98,22 @@ public partial class OPlayer: CharacterBody2D
         if( debug_info_text == null )
         {
             ErrorHandler.ThrowError( $"[OPlayer.cs/_Ready] - Failed to find the debug_info_text label. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
-            return;
         }
 
-        // check if the tab_control is inside the player, if not return an error message.
-        tab_control = FindChild( "tab_control", true ) as Control;
-        if( tab_control == null )
+        // check if the tabControl is inside the player, if not return an error message.
+        tabControl = FindChild( "tabControl", true ) as Control;
+        if( tabControl == null )
         {
-            ErrorHandler.ThrowError( $"[OPlayer.cs/_Ready] - Failed to find the tab_control. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
-            return;
+            ErrorHandler.ThrowError( $"[OPlayer.cs/_Ready] - Failed to find the tabControl. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
         }
 
         EventHandler.ListenForEvent( EventHandler.EventType.ERROR_OCCURRED, UpdateDebugErrorText );
         EventHandler.ListenForEvent( EventHandler.EventType.PLAYER_INFO_UPDATED, UpdateDebugInfoText );
+        CallDeferred( nameof( TriggerInitialEvents ) );
+    }
 
+    private void TriggerInitialEvents( )
+    {
         EventHandler.TriggerEvent( EventHandler.EventType.PLAYER_INFO_UPDATED ); // just to trigger an initial update of the debug_info_text.
     }
 
@@ -181,6 +186,23 @@ public partial class OPlayer: CharacterBody2D
         if( @event.IsActionPressed( PlayerActions.Interact ) )
         {
             TryInteractWithDoor( );
+            EventHandler.TriggerEvent( EventHandler.EventType.TUTORIAL_PLAYER_INTERACT, 3 );
+        }
+
+        // trigger movement related events
+        if(
+            @event.IsActionPressed( PlayerActions.MoveDown ) ||
+            @event.IsActionPressed( PlayerActions.MoveUp ) ||
+            @event.IsActionPressed( PlayerActions.MoveLeft ) ||
+            @event.IsActionPressed( PlayerActions.MoveRight )
+            )
+        {
+            EventHandler.TriggerEvent( EventHandler.EventType.TUTORIAL_PLAYER_MOVEMENT, 1 );
+        }
+
+        if( @event.IsActionPressed( PlayerActions.Run ) )
+        {
+            EventHandler.TriggerEvent( EventHandler.EventType.TUTORIAL_PLAYER_RUNNING, 2 );
         }
 
         //TODO debug only, remove or add a check for debug and release builds.
@@ -193,7 +215,7 @@ public partial class OPlayer: CharacterBody2D
         //TODO debug only, remove or add a check for debug and release builds.
         if( @event.IsActionPressed( "toggle_debug_window" ) )
         {
-            tab_control.Visible = !tab_control.Visible;
+            tabControl.Visible = !tabControl.Visible;
         }
     }
 
@@ -203,19 +225,19 @@ public partial class OPlayer: CharacterBody2D
     {
         //* DOOR LOGIC
         // check the door is reade to teleport the player, if not, return an error message. This is crucial as we dont want the player to be teleported even if they're not colliding with any door.
-        if( this._readyToTeleport == false )
+        if( this.readyToTeleport == false )
         {
-            ErrorHandler.ThrowError( $"[OPlayer.cs/Interaction Input] - The player is not ready for teleportation as it's not colliding with a valid door. this._readyToTeleport: {this._readyToTeleport}", ErrorHandler.ErrorType.GENERIC_ERROR );
+            ErrorHandler.ThrowError( $"[OPlayer.cs/Interaction Input] - The player is not ready for teleportation as it's not colliding with a valid door. this.readyToTeleport: {this.readyToTeleport}", ErrorHandler.ErrorType.GENERIC_ERROR );
             return false;
         }
 
         // teleport the player to the new position.
-        newPosition = _enteredDoor.LinkedDoor._localExitMarker.GlobalPosition;
+        newPosition = enteredDoor.LinkedDoor.LocalExitMarker.GlobalPosition;
         this.TeleportTo( newPosition );
 
 
         //* Change the camera's parent to the linked door's parent, and switch it's position to the new parent's position.
-        Node2D doorParent = _enteredDoor.LinkedDoor.GetParent() as Node2D; // get the door parent
+        Node2D doorParent = enteredDoor.LinkedDoor.GetParent() as Node2D; // get the door parent
         Node2D newParent = doorParent.GetParent() as Node2D;
         if( newParent == null || doorParent == null )
         {
@@ -235,11 +257,11 @@ public partial class OPlayer: CharacterBody2D
     {
         // get the door from wich is parent of the area that entered the player interaction area.
         area2D = area;  //TODO debug only, remove or add a check for debug and release builds.
-        _enteredDoor = area.GetParent( ) as ODoor;
-        if( _enteredDoor != null && _enteredDoor.IsInGroup( "Door" ) )
+        enteredDoor = area.GetParent( ) as ODoor;
+        if( enteredDoor != null && enteredDoor.IsInGroup( "Door" ) )
         {
-            newPosition = _enteredDoor.LinkedDoor._localExitMarker.GlobalPosition;
-            this._readyToTeleport = true;
+            newPosition = enteredDoor.LinkedDoor.LocalExitMarker.GlobalPosition;
+            this.readyToTeleport = true;
         }
 
         //TODO debug only, remove or add a check for debug and release builds.
@@ -247,11 +269,11 @@ public partial class OPlayer: CharacterBody2D
     }
     private void InteractionAreaExited( Area2D area )
     {
-        this._readyToTeleport = false;
+        this.readyToTeleport = false;
 
         //TODO debug only, remove or add a check for debug and release builds.
         area2D = null;
-        _enteredDoor = null;
+        enteredDoor = null;
         newPosition = Vector2.Zero;
         EventHandler.TriggerEvent( EventHandler.EventType.PLAYER_INFO_UPDATED );
     }
@@ -286,14 +308,14 @@ public partial class OPlayer: CharacterBody2D
 			[Player Position]: {this?.Position ?? Vector2.Zero}
 			[Current Velocity]: {this.Velocity}
 			[Interacting With]: {area2D?.Name ?? "None"}
-			[this._readyToTeleport]: {this._readyToTeleport}
+			[this.readyToTeleport]: {this.readyToTeleport}
 			[Current Animation]: {spriteAnimator.Animation}
 			[Flipped]: {spriteAnimator.FlipH}
 
 			[DOOR]
-			[Door Name]: {_enteredDoor?.Name ?? "None"}
+			[Door Name]: {enteredDoor?.Name ?? "None"}
 			[Door Out Position]: {this?.newPosition ?? Vector2.Zero}
-			[Linked Door]: {_enteredDoor?.LinkedDoor?.Name ?? "None"}
+			[Linked Door]: {enteredDoor?.LinkedDoor?.Name ?? "None"}
 			
 			[CAMERA]
 			[Camera Name]: {mainCameraRef?.Name ?? "None"}

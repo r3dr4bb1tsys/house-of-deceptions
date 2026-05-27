@@ -20,7 +20,7 @@ public partial class OGeneric: Node2D
     private AnimatedSprite2D _objectAnimatedSprite = null;
     private bool _isMouseInside = false;
     private string _content = string.Empty;
-    
+
     // # UI Variables # //
     private CanvasLayer canvas = null;
     private PaperUi paper_ui = null;
@@ -86,28 +86,28 @@ public partial class OGeneric: Node2D
 
         // check if the canvas layer and paper_ui exists, if not return an error message.
         canvas = FindChild( "CanvasLayer", true ) as CanvasLayer;
-        if (canvas == null)
+        if( canvas == null )
         {
             ErrorHandler.ThrowError( $"[OGeneric.cs/_Ready] - Failed to find the canvas layer. Make sure to add one as a children of the object.", ErrorHandler.ErrorType.GENERIC_ERROR );
         }
         else paper_ui = canvas.FindChild( "paper_ui", true ) as PaperUi;
 
-        if (paper_ui == null)
+        if( paper_ui == null )
         {
             ErrorHandler.ThrowError( $"[OGeneric.cs/_Ready] - Failed to find the paper_ui. Make sure to add one in a canvas layer as a children of the object.", ErrorHandler.ErrorType.GENERIC_ERROR );
         }
         else
         {
-            paper_ui.UpdateContent(_content);
+            paper_ui.UpdateContent( _content );
         }
     }
 
 
     public override void _Input( InputEvent @event )
     {
-        if (Input.IsMouseButtonPressed(MouseButton.Left) && _isMouseInside == true)   // left clicked on the object and interact with it.
+        if( Input.IsMouseButtonPressed( MouseButton.Left ) && _isMouseInside == true )   // left clicked on the object and interact with it.
         {
-            switch (_objectType)
+            switch( _objectType )
             {
                 case ObjectType.Document:
                 {

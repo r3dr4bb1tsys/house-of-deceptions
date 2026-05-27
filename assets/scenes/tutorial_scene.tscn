@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://c07u7jeypcgmn"]
 
 [ext_resource type="Texture2D" uid="uid://cxkom74mwdu5g" path="res://assets/sprites/s_house_assets.png" id="1_4i0b5"]
+[ext_resource type="Script" uid="uid://djt3lysr36h6x" path="res://assets/scenes/TutorialScene.cs" id="1_cs318"]
 [ext_resource type="PackedScene" uid="uid://cp57ph1uplfrv" path="res://assets/objects/o_door/oDoor.tscn" id="2_4i0b5"]
 [ext_resource type="PackedScene" uid="uid://dhq7jugxo8edk" path="res://assets/objects/o_player/oPlayer.tscn" id="3_3ensd"]
-[ext_resource type="PackedScene" uid="uid://byg4aciowuk06" path="res://assets/objects/o_generic/OGeneric.tscn" id="3_cs318"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aouuc"]
 texture = ExtResource("1_4i0b5")
@@ -432,7 +432,147 @@ texture = ExtResource("1_4i0b5")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_aouuc")
 
+[sub_resource type="LabelSettings" id="LabelSettings_4i0b5"]
+font_size = 13
+
+[sub_resource type="Animation" id="Animation_3ensd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, -208)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, -208)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, -208)]
+}
+
+[sub_resource type="Animation" id="Animation_elxl1"]
+resource_name = "stage_0"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_0:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, -208), Vector2(576, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cs318"]
+resource_name = "stage_1"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_0:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, 0), Vector2(576, -208)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_1:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, -208), Vector2(576, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_icdss"]
+resource_name = "stage_2"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_1:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, 0), Vector2(576, -208)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, -208), Vector2(576, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uormo"]
+resource_name = "stage_completed"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_2:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, 0), Vector2(576, -208)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_icdss"]
+_data = {
+&"RESET": SubResource("Animation_3ensd"),
+&"stage_0": SubResource("Animation_elxl1"),
+&"stage_1": SubResource("Animation_cs318"),
+&"stage_2": SubResource("Animation_icdss"),
+&"stage_completed": SubResource("Animation_uormo")
+}
+
 [node name="TutorialScene" type="Node2D" unique_id=45415432]
+script = ExtResource("1_cs318")
 
 [node name="Hall_1" type="Node2D" parent="." unique_id=252114628]
 
@@ -550,15 +690,145 @@ scale = Vector2(1.5, 1.5)
 LinkedDoor = NodePath("../../../Hall_1/to_bedroom_door/ToBedroomDoor")
 LocalExitMarkerPosition = Vector2(0, 8)
 
-[node name="obj_paper_1" parent="Bedroom_1" unique_id=1428563663 instance=ExtResource("3_cs318")]
-position = Vector2(-48, -6)
-scale = Vector2(0.7, 0.5)
-objectType = 3
-
 [node name="oPlayer" parent="." unique_id=831620466 groups=["PlayerInteactionArea"] instance=ExtResource("3_3ensd")]
 z_index = 10
 position = Vector2(26, 29)
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="oPlayer" unique_id=288119862]
+
+[node name="tutorial_label_0" type="Control" parent="oPlayer/CanvasLayer2" unique_id=1829667302]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = -208.0
+offset_bottom = -208.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="oPlayer/CanvasLayer2/tutorial_label_0" unique_id=902095410]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 30.0
+offset_right = 200.0
+offset_bottom = 180.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="oPlayer/CanvasLayer2/tutorial_label_0/Panel" unique_id=106789741]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+
+[node name="tutorial_label" type="Label" parent="oPlayer/CanvasLayer2/tutorial_label_0/Panel/MarginContainer" unique_id=1350143052]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+text = "You've just awakend inside this strange house.
+Move around and search for an exit.
+Use WASD to walk.
+"
+label_settings = SubResource("LabelSettings_4i0b5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_tab_index = 1
+metadata/_tab_name = "Key Binds"
+
+[node name="tutorial_label_1" type="Control" parent="oPlayer/CanvasLayer2" unique_id=309273432]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = -208.0
+offset_bottom = -208.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="oPlayer/CanvasLayer2/tutorial_label_1" unique_id=299883775]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 30.0
+offset_right = 200.0
+offset_bottom = 180.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="oPlayer/CanvasLayer2/tutorial_label_1/Panel" unique_id=902520162]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+
+[node name="tutorial_label" type="Label" parent="oPlayer/CanvasLayer2/tutorial_label_1/Panel/MarginContainer" unique_id=1288263672]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+text = "Good! I see you're still able to move.
+Now...try running, hold shift to run."
+label_settings = SubResource("LabelSettings_4i0b5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_tab_index = 1
+metadata/_tab_name = "Key Binds"
+
+[node name="tutorial_label_2" type="Control" parent="oPlayer/CanvasLayer2" unique_id=1862256597]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = -208.0
+offset_bottom = -208.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="oPlayer/CanvasLayer2/tutorial_label_2" unique_id=939933696]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 30.0
+offset_right = 200.0
+offset_bottom = 180.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="oPlayer/CanvasLayer2/tutorial_label_2/Panel" unique_id=1007152054]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+
+[node name="tutorial_label" type="Label" parent="oPlayer/CanvasLayer2/tutorial_label_2/Panel/MarginContainer" unique_id=1059221962]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+text = "Great, you dont seem to be injured. 
+Try to find your room, it should be one of the three doors in front of you.
+Simply press E to interact with a door."
+label_settings = SubResource("LabelSettings_4i0b5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_tab_index = 1
+metadata/_tab_name = "Key Binds"
+
 [node name="mainSceneCamera" type="Camera2D" parent="." unique_id=228657214]
 z_index = 100
 zoom = Vector2(4, 4)
+
+[node name="tutorialAnimationManager" type="AnimationPlayer" parent="." unique_id=1935199028]
+libraries/ = SubResource("AnimationLibrary_icdss")
+autoplay = &"stage_0"

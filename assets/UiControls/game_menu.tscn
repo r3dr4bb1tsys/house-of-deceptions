@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://cvnlmnb07jlc1" path="res://assets/Themes/menu_hslider_theme.tres" id="3_7b1k0"]
 
 [node name="GameMenu" type="Control" unique_id=1180639440]
+z_index = 999
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
