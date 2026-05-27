@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://byg4aciowuk06"]
 
 [ext_resource type="Script" uid="uid://cw6wu3vpt8ymj" path="res://assets/objects/o_generic/OGeneric.cs" id="1_lmym4"]
+[ext_resource type="PackedScene" uid="uid://1h6x0m27mytj" path="res://assets/UiControls/paper_ui.tscn" id="2_q6d2p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2wnn"]
 
@@ -11,3 +12,10 @@ script = ExtResource("1_lmym4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objArea" unique_id=858705259]
 shape = SubResource("RectangleShape2D_x2wnn")
+
+[node name="objSprite" type="Sprite2D" parent="." unique_id=1277601207]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1717200109]
+
+[node name="paper_ui" parent="CanvasLayer" unique_id=132750339 instance=ExtResource("2_q6d2p")]
+visible = false

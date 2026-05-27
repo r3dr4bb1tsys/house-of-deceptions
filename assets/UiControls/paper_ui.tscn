@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://1h6x0m27mytj"]
+
+[ext_resource type="Script" uid="uid://377gaqvsck5u" path="res://assets/UiControls/PaperUi.cs" id="1_qj1ma"]
+[ext_resource type="Theme" uid="uid://dd3ft8s202wwy" path="res://assets/Themes/richtextlabel_theme.tres" id="1_tb0gr"]
+
+[node name="PaperUi" type="Control" unique_id=132750339]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qj1ma")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=154477647]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer" unique_id=579079045]
+custom_minimum_size = Vector2(350, 450)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Panel" unique_id=571274211]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/Panel/MarginContainer" unique_id=1044909763]
+layout_mode = 2
+
+[node name="paper_content" type="RichTextLabel" parent="CenterContainer/Panel/MarginContainer/ScrollContainer" unique_id=569315191]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_tb0gr")
+autowrap_mode = 2
+shortcut_keys_enabled = false
+
+[node name="close_button" type="Button" parent="." unique_id=1434787510]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 558.0
+offset_right = 750.0
+offset_bottom = 589.0
+text = "Close"

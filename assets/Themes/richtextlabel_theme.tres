@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://dd3ft8s202wwy"]
+
+[ext_resource type="FontFile" uid="uid://scdiklkki75s" path="res://assets/Themes/Fonts/DirtyEnough-Regular.ttf" id="1_3ruet"]
+
+[resource]
+RichTextLabel/font_sizes/normal_font_size = 25
+RichTextLabel/fonts/normal_font = ExtResource("1_3ruet")
