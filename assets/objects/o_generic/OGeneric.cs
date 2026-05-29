@@ -10,16 +10,16 @@ public partial class OGeneric: Node2D
         None = 0,
         Pickable = 1,
         Trigger = 2,
-        Document = 3
+        Document = 3,
+        Key = 4
     }
     // # ---------------- # // 
 
     // # Private Variables # //
     private ObjectType _objectType = ObjectType.None;
-    private Texture2D _objTexture = null;
-    private AnimatedSprite2D _objectAnimatedSprite = null;
     private bool _isMouseInside = false;
     private string _content = string.Empty;
+    private ODoor _door_to_unlock = null;
 
     // # UI Variables # //
     private CanvasLayer canvas = null;
@@ -27,7 +27,6 @@ public partial class OGeneric: Node2D
 
     // nodes
     private Area2D areaNode = null;
-    private Sprite2D spriteNode = null;
     // # ------------------ # //
 
 
@@ -39,23 +38,21 @@ public partial class OGeneric: Node2D
         get => _objectType;
         set => _objectType = value;
     }
-    [Export]
-    public Texture2D objTexture // if we want a little static sprite to display along with the object
-    {
-        get => _objTexture;
-        set => _objTexture = value;
-    }
-    [Export]
-    public AnimatedSprite2D objectAnimatedSprite // if we want a little animation for our sprite instead of a static picture.
-    {
-        get => _objectAnimatedSprite;
-        set => _objectAnimatedSprite = value;
-    }
-    [Export]
+
+    [ExportSubgroup("Document")]
+    [Export(PropertyHint.MultilineText)]
     public string Content
     {
         get => _content;
         set => _content = value;
+    }
+
+    [ExportSubgroup("Key")]
+    [Export]
+    public ODoor DoorToUnlock
+    {
+        get => _door_to_unlock;
+        set => _door_to_unlock = value;
     }
     // # ---------------- # //
 
@@ -75,15 +72,6 @@ public partial class OGeneric: Node2D
             areaNode.Connect( "mouse_exited", new Callable( this, nameof( OnMouseExited ) ) );
         }
 
-
-        // check if the sprite2d is inside the object, if not return an error message.
-        spriteNode = FindChild( "objSprite", true ) as Sprite2D;
-        if( spriteNode == null || objTexture == null )
-        {
-            ErrorHandler.ThrowError( $"[OGeneric.cs/_Ready] - Failed because {( spriteNode == null ? "spriteNode" : "objTexture" )} is null.", ErrorHandler.ErrorType.GENERIC_ERROR );
-        }
-        else spriteNode.Texture = objTexture;
-
         // check if the canvas layer and paper_ui exists, if not return an error message.
         canvas = FindChild( "CanvasLayer", true ) as CanvasLayer;
         if( canvas == null )
@@ -96,10 +84,8 @@ public partial class OGeneric: Node2D
         {
             ErrorHandler.ThrowError( $"[OGeneric.cs/_Ready] - Failed to find the paper_ui. Make sure to add one in a canvas layer as a children of the object.", ErrorHandler.ErrorType.GENERIC_ERROR );
         }
-        else
-        {
-            paper_ui.UpdateContent( _content );
-        }
+        else paper_ui.UpdateContent( _content );
+
     }
 
 
@@ -107,12 +93,20 @@ public partial class OGeneric: Node2D
     {
         if( Input.IsMouseButtonPressed( MouseButton.Left ) && _isMouseInside == true )   // left clicked on the object and interact with it.
         {
+            // TODO // * refactor this. Add the specific method for each logic.
             switch( _objectType )
             {
                 case ObjectType.Document:
                 {
-                    // see document content logic.
-                    paper_ui.Visible = true;    // TODO: Simple show/hide for the document, implement actual logic once this is done.
+                    paper_ui.Visible = true;
+                    break;
+                }
+                case ObjectType.Key:
+                {
+                    if( _door_to_unlock == null ) return;
+                    _door_to_unlock.IsLocked = false;
+                    EventHandler.TriggerEvent( EventHandler.EventType.MOUSE_EXITED ); // here just to hide the player object info panel. KEEP IT HERE
+                    this.QueueFree( );
                     break;
                 }
             }
@@ -121,13 +115,13 @@ public partial class OGeneric: Node2D
 
     private void OnMouseEntered( )
     {
-        EventHandler.TriggerEvent( EventHandler.EventType.AREA_ENTERED, this );
+        EventHandler.TriggerEvent( EventHandler.EventType.MOUSE_ENTERED, this );
         _isMouseInside = true;
     }
 
     private void OnMouseExited( )
     {
-        EventHandler.TriggerEvent( EventHandler.EventType.AREA_ENTERED );
+        EventHandler.TriggerEvent( EventHandler.EventType.MOUSE_EXITED );
         _isMouseInside = false;
     }
 }

@@ -7,6 +7,7 @@ public partial class ODoor: Node2D
     private Area2D _doorInteractionArea = null;
     private ODoor _linkedDoor = null;
     private Vector2 _localExitMarkerPosition = Vector2.Zero;
+    private bool _is_locked = false;
     // # ----------------- # //
 
 
@@ -23,6 +24,12 @@ public partial class ODoor: Node2D
         {
             _linkedDoor = value;
         }
+    }
+    [Export]
+    public bool IsLocked
+    {
+        get => _is_locked;
+        set => _is_locked = value;
     }
     [Export]
     public Vector2 LocalExitMarkerPosition

@@ -23,6 +23,11 @@ public partial class ErrorHandler : Node
 	// Push an error into the error list. 
 	public static void ThrowError(string errorMessage, ErrorType errorType = ErrorType.GENERIC_ERROR)
 	{
+		// TODO prevents the error logging from occuring when debug mode is off.
+		if (SharedVariables.IS_DEBUG_MODE == false)
+		{
+			return;
+		}
 		/*
 		if (errorHistory.Count >= 5)
 		{

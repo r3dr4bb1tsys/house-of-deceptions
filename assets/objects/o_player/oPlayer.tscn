@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dhq7jugxo8edk"]
 
-[ext_resource type="Script" uid="uid://dewshgwg3xfr8" path="res://assets/objects/o_player/OPlayer.cs" id="1_iv8vd"]
+[ext_resource type="Script" uid="uid://c0peeqvqd71sp" path="res://assets/objects/o_player/OPlayer.cs" id="1_iv8vd"]
 [ext_resource type="Texture2D" uid="uid://cyomymrgit5k7" path="res://assets/objects/o_player/s_player.png" id="1_o07kb"]
 [ext_resource type="Theme" uid="uid://c5ccfk2vewxm1" path="res://assets/Themes/menu_label_theme.tres" id="3_2mr2l"]
 [ext_resource type="PackedScene" uid="uid://d1gwx3yo2vkpt" path="res://assets/UiControls/game_menu.tscn" id="3_xgc40"]
@@ -165,9 +165,8 @@ script = ExtResource("1_iv8vd")
 
 [node name="spriteAnimator" type="AnimatedSprite2D" parent="." unique_id=1844162252]
 sprite_frames = SubResource("SpriteFrames_3u2np")
-animation = &"frontIdle"
+animation = &"backIdle"
 autoplay = "frontIdle"
-frame_progress = 0.22707689
 
 [node name="player_shadow" type="Sprite2D" parent="spriteAnimator" unique_id=260186373]
 modulate = Color(1, 1, 1, 0.2627451)
@@ -191,23 +190,76 @@ shape = SubResource("CircleShape2D_iv8vd")
 
 [node name="PlayerUi" type="Control" parent="CanvasLayer" unique_id=1343323302]
 layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="object_name_label" type="Label" parent="CanvasLayer/PlayerUi" unique_id=355101525]
+[node name="objectInfoPanel" type="Panel" parent="CanvasLayer/PlayerUi" unique_id=1018987318]
+visible = false
+custom_minimum_size = Vector2(350, 70)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -86.0
+offset_left = -20.0
 offset_top = 40.0
-offset_right = 86.0
-offset_bottom = 90.0
+offset_right = 20.0
+offset_bottom = 80.0
 grow_horizontal = 2
+
+[node name="objectNameLabel" type="Label" parent="CanvasLayer/PlayerUi/objectInfoPanel" unique_id=355101525]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -17.5
+offset_right = 53.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("3_2mr2l")
 theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="doorInfoPanel" type="Panel" parent="CanvasLayer/PlayerUi" unique_id=731981523]
+visible = false
+custom_minimum_size = Vector2(170, 45)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -90.0
+offset_right = 75.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="doorInfoLabel" type="Label" parent="CanvasLayer/PlayerUi/doorInfoPanel" unique_id=1502285390]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = -15.0
+offset_right = 76.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_2mr2l")
+theme_override_font_sizes/font_size = 30
+text = "door is locked"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -215,6 +267,7 @@ vertical_alignment = 1
 visible = false
 
 [node name="tabControl" type="Control" parent="CanvasLayer" unique_id=427377980]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 20.0

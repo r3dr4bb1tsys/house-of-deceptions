@@ -7,13 +7,14 @@
 
 [node name="OGeneric" type="Node2D" unique_id=1428563663]
 script = ExtResource("1_lmym4")
+objTexture = null
+H_FRAMES = 0
+V_FRAMES = 0
 
 [node name="objArea" type="Area2D" parent="." unique_id=772187254]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objArea" unique_id=858705259]
 shape = SubResource("RectangleShape2D_x2wnn")
-
-[node name="objSprite" type="Sprite2D" parent="." unique_id=1277601207]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1717200109]
 

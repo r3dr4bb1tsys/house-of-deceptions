@@ -1,0 +1,221 @@
+[gd_scene format=4 uid="uid://uihiabxwdmbt"]
+
+[ext_resource type="TileSet" uid="uid://3j4ygehfbvhi" path="res://assets/resources/game_tile_set.tres" id="2_4xo1b"]
+[ext_resource type="PackedScene" uid="uid://cp57ph1uplfrv" path="res://assets/objects/o_door/oDoor.tscn" id="2_etat2"]
+[ext_resource type="PackedScene" uid="uid://dhq7jugxo8edk" path="res://assets/objects/o_player/oPlayer.tscn" id="3_ak3yg"]
+[ext_resource type="PackedScene" uid="uid://byg4aciowuk06" path="res://assets/objects/o_generic/OGeneric.tscn" id="3_etat2"]
+[ext_resource type="SpriteFrames" uid="uid://c0nl4chbadcwi" path="res://assets/resources/game_sprite_frames.tres" id="5_ak3yg"]
+
+[node name="Scene_1" type="Node2D" unique_id=966062069]
+
+[node name="oPlayer" parent="." unique_id=831620466 groups=["PlayerInteactionArea"] instance=ExtResource("3_ak3yg")]
+z_index = 10
+position = Vector2(0, 16)
+
+[node name="mainSceneCamera" type="Camera2D" parent="." unique_id=207525087]
+z_index = 100
+zoom = Vector2(4, 4)
+
+[node name="Hall_1" type="Node2D" parent="." unique_id=2032314944]
+
+[node name="base" type="TileMapLayer" parent="Hall_1" unique_id=1335738754]
+tile_map_data = PackedByteArray("AAD4/wAAAAAEAAcAAAD4/wEAAAAEAAYAAAD5/wAAAAAFAAcAAAD5/wEAAAAFAAYAAAD6/wAAAAAGAAcAAAD6/wEAAAAGAAYAAAD7/wAAAAAHAAcAAAD7/wEAAAAHAAYAAAD4/wIAAAAEAAcAAAD4/wMAAAAEAAYAAAD5/wIAAAAFAAcAAAD5/wMAAAAFAAYAAAD6/wIAAAAGAAcAAAD6/wMAAAAGAAYAAAD7/wIAAAAHAAcAAAD7/wMAAAAHAAYAAAD8/wAAAAAEAAcAAAD8/wEAAAAEAAYAAAD9/wAAAAAFAAcAAAD9/wEAAAAFAAYAAAD+/wAAAAAGAAcAAAD+/wEAAAAGAAYAAAD//wAAAAAHAAcAAAD//wEAAAAHAAYAAAD8/wIAAAAEAAcAAAD8/wMAAAAEAAYAAAD9/wIAAAAFAAcAAAD9/wMAAAAFAAYAAAD+/wIAAAAGAAcAAAD+/wMAAAAGAAYAAAD//wIAAAAHAAcAAAD//wMAAAAHAAYAAAAAAAAAAAAEAAcAAAAAAAEAAAAEAAYAAAABAAAAAAAFAAcAAAABAAEAAAAFAAYAAAACAAAAAAAGAAcAAAACAAEAAAAGAAYAAAADAAAAAAAHAAcAAAADAAEAAAAHAAYAAAAAAAIAAAAEAAcAAAAAAAMAAAAEAAYAAAABAAIAAAAFAAcAAAABAAMAAAAFAAYAAAACAAIAAAAGAAcAAAACAAMAAAAGAAYAAAADAAIAAAAHAAcAAAADAAMAAAAHAAYAAAAEAAAAAAAEAAcAAAAEAAEAAAAEAAYAAAAFAAAAAAAFAAcAAAAFAAEAAAAFAAYAAAAGAAAAAAAGAAcAAAAGAAEAAAAGAAYAAAAHAAAAAAAHAAcAAAAHAAEAAAAHAAYAAAAEAAIAAAAEAAcAAAAEAAMAAAAEAAYAAAAFAAIAAAAFAAcAAAAFAAMAAAAFAAYAAAAGAAIAAAAGAAcAAAAGAAMAAAAGAAYAAAAHAAIAAAAHAAcAAAAHAAMAAAAHAAYAAAD4////AAAGAAIAAAD5////AAAHAAIAAAD6////AAAHAAIAAAD7////AAAHAAIAAAD8////AAAHAAIAAAD9////AAAHAAIAAAD+////AAAHAAIAAAD/////AAAHAAIAAAAAAP//AAAHAAIAAAABAP//AAAHAAIAAAACAP//AAAHAAIAAAADAP//AAAHAAIAAAAEAP//AAAHAAIAAAAFAP//AAAHAAIAAAAGAP//AAAHAAIAAAAHAP//AAAGAAIAABD5//7/AAACAAIAAAD6//7/AAACAAIAAAD7//7/AAACAAIAAAD8//7/AAACAAIAAAD9//7/AAACAAIAAAD+//7/AAACAAIAAAD///7/AAACAAIAAAAAAP7/AAACAAIAAAABAP7/AAACAAIAAAACAP7/AAACAAIAAAADAP7/AAACAAIAAAAEAP7/AAACAAIAAAAFAP7/AAACAAIAAAAGAP7/AAACAAIAAAAHAP7/AAABAAIAABD4//7/AAABAAIAAAD4//z/AAAEAAEAABAHAPz/AAAEAAEAAAD5//z/AAADAAEAAAD6//z/AAADAAEAAAD7//z/AAADAAEAAAD8//z/AAADAAEAAAD9//z/AAADAAEAAAD+//z/AAADAAEAAAD///z/AAADAAEAAAAAAPz/AAADAAEAAAABAPz/AAADAAEAAAACAPz/AAADAAEAAAADAPz/AAADAAEAAAAEAPz/AAADAAEAAAAFAPz/AAADAAEAAAAGAPz/AAADAAEAAAD4//3/AAABAAIAAAAHAP3/AAABAAIAABD5//3/AAADAAIAABD6//3/AAADAAIAABD7//3/AAADAAIAABD8//3/AAADAAIAABD9//3/AAADAAIAABD+//3/AAADAAIAABD///3/AAADAAIAABAAAP3/AAADAAIAABABAP3/AAADAAIAABACAP3/AAADAAIAABADAP3/AAADAAIAABAEAP3/AAADAAIAABAFAP3/AAADAAIAABAGAP3/AAADAAIAABA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="border" type="TileMapLayer" parent="Hall_1" unique_id=812534284]
+z_index = 999
+tile_map_data = PackedByteArray("AAD3//v/AAAAAAAAAAD3/wQAAAAAAAAAACAIAAQAAAAAAAAAADAIAPv/AAAAAAAAABD4//v/AAABAAAAAAD5//v/AAABAAAAAAD6//v/AAABAAAAAAD7//v/AAABAAAAAAD8//v/AAABAAAAAAD9//v/AAABAAAAAAD+//v/AAABAAAAAAD///v/AAABAAAAAAAAAPv/AAABAAAAAAABAPv/AAABAAAAAAACAPv/AAABAAAAAAADAPv/AAABAAAAAAAEAPv/AAABAAAAAAAFAPv/AAABAAAAAAAGAPv/AAABAAAAAAAHAPv/AAABAAAAAAAIAPz/AAAFAAEAAAAIAP3/AAAFAAEAAAAIAP7/AAAFAAEAAAAIAP//AAAFAAEAAAAIAAAAAAAFAAEAAAAIAAEAAAAFAAEAAAAIAAIAAAAFAAEAAAAIAAMAAAAFAAEAAAD3//z/AAAFAAEAADD3//3/AAAFAAEAADD3//7/AAAFAAEAADD3////AAAFAAEAADD3/wAAAAAFAAEAADD3/wEAAAAFAAEAADD3/wIAAAAFAAEAADD3/wMAAAAFAAEAADD4/wQAAAABAAAAACD5/wQAAAABAAAAACD6/wQAAAABAAAAACD7/wQAAAABAAAAACD8/wQAAAABAAAAACD9/wQAAAABAAAAACD+/wQAAAABAAAAACD//wQAAAABAAAAACAAAAQAAAABAAAAACABAAQAAAABAAAAACACAAQAAAABAAAAACADAAQAAAABAAAAACAEAAQAAAABAAAAACAFAAQAAAABAAAAACAGAAQAAAABAAAAACAHAAQAAAABAAAAACA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="doors" type="TileMapLayer" parent="Hall_1" unique_id=1990417459]
+tile_map_data = PackedByteArray("AAD8//3/AwAAAAAAAAD8//7/AwAAAAEAAAD8////AwAAAAIAAAD9//3/AwABAAAAAAD9//7/AwABAAEAAAD9////AwABAAIAAAD///3/AwAAAAAAAAD///7/AwAAAAEAAAD/////AwAAAAIAAAAAAP3/AwABAAAAAAAAAP7/AwABAAEAAAAAAP//AwABAAIAAAACAP3/AwAAAAAAAAACAP7/AwAAAAEAAAACAP//AwAAAAIAAAADAP3/AwABAAAAAAADAP7/AwABAAEAAAADAP//AwABAAIAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="door_frames" type="TileMapLayer" parent="Hall_1/doors" unique_id=1568876970]
+tile_map_data = PackedByteArray("AAD8//3/AwAEAAAAAAD8//7/AwAEAAEAAAD8////AwAEAAIAAAD9//3/AwAFAAAAAAD9//7/AwAFAAEAAAD9////AwAFAAIAAAD///3/AwAEAAAAAAD///7/AwAEAAEAAAD/////AwAEAAIAAAAAAP3/AwAFAAAAAAAAAP7/AwAFAAEAAAAAAP//AwAFAAIAAAACAP3/AwAEAAAAAAACAP7/AwAEAAEAAAACAP//AwAEAAIAAAADAP3/AwAFAAAAAAADAP7/AwAFAAEAAAADAP//AwAFAAIAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="o_to_bedroom_1_door" parent="Hall_1/doors" unique_id=262252192 node_paths=PackedStringArray("LinkedDoor") instance=ExtResource("2_etat2")]
+position = Vector2(48, -24)
+scale = Vector2(1, 2)
+LinkedDoor = NodePath("../../../Bedroom_1/doors/o_bedroom_1_door")
+IsLocked = true
+LocalExitMarkerPosition = Vector2(0, 5)
+
+[node name="o_to_bedroom_2_door" parent="Hall_1/doors" unique_id=1279396571 node_paths=PackedStringArray("LinkedDoor") instance=ExtResource("2_etat2")]
+position = Vector2(0, -24)
+scale = Vector2(1, 2)
+LinkedDoor = NodePath("../../../Bedroom_2/doors/o_bedroom_2_door")
+LocalExitMarkerPosition = Vector2(0, 5)
+
+[node name="o_to_kitchen_door" parent="Hall_1/doors" unique_id=2119019926 node_paths=PackedStringArray("LinkedDoor") instance=ExtResource("2_etat2")]
+position = Vector2(-48, -24)
+scale = Vector2(1, 2)
+LinkedDoor = NodePath("../../../Kitchen/doors/o_kitchen_door")
+LocalExitMarkerPosition = Vector2(0, 5)
+
+[node name="Bedroom_2" type="Node2D" parent="." unique_id=1445029848]
+position = Vector2(0, -240)
+
+[node name="base" type="TileMapLayer" parent="Bedroom_2" unique_id=60067407]
+tile_map_data = PackedByteArray("AAD4/wAAAAAEAAcAAAD4/wEAAAAEAAYAAAD5/wAAAAAFAAcAAAD5/wEAAAAFAAYAAAD6/wAAAAAGAAcAAAD6/wEAAAAGAAYAAAD7/wAAAAAHAAcAAAD7/wEAAAAHAAYAAAD4/wIAAAAEAAcAAAD4/wMAAAAEAAYAAAD5/wIAAAAFAAcAAAD5/wMAAAAFAAYAAAD6/wIAAAAGAAcAAAD6/wMAAAAGAAYAAAD7/wIAAAAHAAcAAAD7/wMAAAAHAAYAAAD8/wAAAAAEAAcAAAD8/wEAAAAEAAYAAAD9/wAAAAAFAAcAAAD9/wEAAAAFAAYAAAD+/wAAAAAGAAcAAAD+/wEAAAAGAAYAAAD//wAAAAAHAAcAAAD//wEAAAAHAAYAAAD8/wIAAAAEAAcAAAD8/wMAAAAEAAYAAAD9/wIAAAAFAAcAAAD9/wMAAAAFAAYAAAD+/wIAAAAGAAcAAAD+/wMAAAAGAAYAAAD//wIAAAAHAAcAAAD//wMAAAAHAAYAAAAAAAAAAAAEAAcAAAAAAAEAAAAEAAYAAAABAAAAAAAFAAcAAAABAAEAAAAFAAYAAAACAAAAAAAGAAcAAAACAAEAAAAGAAYAAAADAAAAAAAHAAcAAAADAAEAAAAHAAYAAAAAAAIAAAAEAAcAAAAAAAMAAAAEAAYAAAABAAIAAAAFAAcAAAABAAMAAAAFAAYAAAACAAIAAAAGAAcAAAACAAMAAAAGAAYAAAADAAIAAAAHAAcAAAADAAMAAAAHAAYAAAAEAAAAAAAEAAcAAAAEAAEAAAAEAAYAAAAFAAAAAAAFAAcAAAAFAAEAAAAFAAYAAAAGAAAAAAAGAAcAAAAGAAEAAAAGAAYAAAAHAAAAAAAHAAcAAAAHAAEAAAAHAAYAAAAEAAIAAAAEAAcAAAAEAAMAAAAEAAYAAAAFAAIAAAAFAAcAAAAFAAMAAAAFAAYAAAAGAAIAAAAGAAcAAAAGAAMAAAAGAAYAAAAHAAIAAAAHAAcAAAAHAAMAAAAHAAYAAAD4////AAAGAAIAAAD5////AAAHAAIAAAD6////AAAHAAIAAAD7////AAAHAAIAAAD8////AAAHAAIAAAD9////AAAHAAIAAAD+////AAAHAAIAAAD/////AAAHAAIAAAAAAP//AAAHAAIAAAABAP//AAAHAAIAAAACAP//AAAHAAIAAAADAP//AAAHAAIAAAAEAP//AAAHAAIAAAAFAP//AAAHAAIAAAAGAP//AAAHAAIAAAAHAP//AAAGAAIAABD5//7/AAACAAIAAAD6//7/AAACAAIAAAD7//7/AAACAAIAAAD8//7/AAACAAIAAAD9//7/AAACAAIAAAD+//7/AAACAAIAAAD///7/AAACAAIAAAAAAP7/AAACAAIAAAABAP7/AAACAAIAAAACAP7/AAACAAIAAAADAP7/AAACAAIAAAAEAP7/AAACAAIAAAAFAP7/AAACAAIAAAAGAP7/AAACAAIAAAAHAP7/AAABAAIAABD4//7/AAABAAIAAAD4//z/AAAEAAEAABAHAPz/AAAEAAEAAAD5//z/AAADAAEAAAD6//z/AAADAAEAAAD7//z/AAADAAEAAAD8//z/AAADAAEAAAD9//z/AAADAAEAAAD+//z/AAADAAEAAAD///z/AAADAAEAAAAAAPz/AAADAAEAAAABAPz/AAADAAEAAAACAPz/AAADAAEAAAADAPz/AAADAAEAAAAEAPz/AAADAAEAAAAFAPz/AAADAAEAAAAGAPz/AAADAAEAAAD4//3/AAABAAIAAAAHAP3/AAABAAIAABD5//3/AAADAAIAABD6//3/AAADAAIAABD7//3/AAADAAIAABD8//3/AAADAAIAABD9//3/AAADAAIAABD+//3/AAADAAIAABD///3/AAADAAIAABAAAP3/AAADAAIAABABAP3/AAADAAIAABACAP3/AAADAAIAABADAP3/AAADAAIAABAEAP3/AAADAAIAABAFAP3/AAADAAIAABAGAP3/AAADAAIAABA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="carpet" type="TileMapLayer" parent="Bedroom_2/base" unique_id=1796710520]
+tile_map_data = PackedByteArray("AAD4/wAAAgAAAAAAAAACAAAAAgAAAAAAABACAAMAAgAAAAAAADD4/wMAAgAAAAAAACD4/wEAAgAAAAEAAAD4/wIAAgAAAAEAAAACAAIAAgAAAAEAABACAAEAAgAAAAEAABD5/wMAAgABAAIAAAD6/wMAAgABAAIAAAD7/wMAAgABAAIAAAD8/wMAAgABAAIAAAD9/wMAAgABAAIAAAD+/wMAAgABAAIAAAD//wMAAgABAAIAAAAAAAMAAgABAAIAAAABAAMAAgABAAIAAAABAAAAAgABAAIAACAAAAAAAgABAAIAACD//wAAAgABAAIAACD+/wAAAgABAAIAACD9/wAAAgABAAIAACD8/wAAAgABAAIAACD7/wAAAgABAAIAACD6/wAAAgABAAIAACD5/wAAAgABAAIAACD5/wEAAgABAAEAAAD5/wIAAgABAAEAAAD6/wIAAgABAAEAAAD7/wIAAgABAAEAAAD8/wIAAgABAAEAAAD9/wIAAgABAAEAAAD+/wIAAgABAAEAAAD//wIAAgABAAEAAAAAAAIAAgABAAEAAAABAAIAAgABAAEAAAABAAEAAgABAAEAAAAAAAEAAgABAAEAAAD//wEAAgABAAEAAAD+/wEAAgABAAEAAAD9/wEAAgABAAEAAAD8/wEAAgABAAEAAAD7/wEAAgABAAEAAAD6/wEAAgABAAEAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="border" type="TileMapLayer" parent="Bedroom_2" unique_id=1722092539]
+z_index = 999
+tile_map_data = PackedByteArray("AAD3//v/AAAAAAAAAAD3/wQAAAAAAAAAACAIAAQAAAAAAAAAADAIAPv/AAAAAAAAABD4//v/AAABAAAAAAD5//v/AAABAAAAAAD6//v/AAABAAAAAAD7//v/AAABAAAAAAD8//v/AAABAAAAAAD9//v/AAABAAAAAAD+//v/AAABAAAAAAD///v/AAABAAAAAAAAAPv/AAABAAAAAAABAPv/AAABAAAAAAACAPv/AAABAAAAAAADAPv/AAABAAAAAAAEAPv/AAABAAAAAAAFAPv/AAABAAAAAAAGAPv/AAABAAAAAAAHAPv/AAABAAAAAAAIAPz/AAAFAAEAAAAIAP3/AAAFAAEAAAAIAP7/AAAFAAEAAAAIAP//AAAFAAEAAAAIAAAAAAAFAAEAAAAIAAEAAAAFAAEAAAAIAAIAAAAFAAEAAAAIAAMAAAAFAAEAAAD3//z/AAAFAAEAADD3//3/AAAFAAEAADD3//7/AAAFAAEAADD3////AAAFAAEAADD3/wAAAAAFAAEAADD3/wEAAAAFAAEAADD3/wIAAAAFAAEAADD3/wMAAAAFAAEAADD4/wQAAAABAAAAACD5/wQAAAABAAAAACD6/wQAAAABAAAAACD7/wQAAAABAAAAACD8/wQAAAABAAAAACD9/wQAAAABAAAAACD+/wQAAAABAAAAACD//wQAAAABAAAAACAAAAQAAAABAAAAACABAAQAAAABAAAAACACAAQAAAABAAAAACADAAQAAAABAAAAACAEAAQAAAABAAAAACAFAAQAAAABAAAAACAGAAQAAAABAAAAACAHAAQAAAABAAAAACA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="doors" type="TileMapLayer" parent="Bedroom_2" unique_id=1375759902]
+tile_map_data = PackedByteArray("AAAFAP3/AwAAAAAAAAAFAP7/AwAAAAEAAAAFAP//AwAAAAIAAAAGAP3/AwABAAAAAAAGAP7/AwABAAEAAAAGAP//AwABAAIAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="door_frames" type="TileMapLayer" parent="Bedroom_2/doors" unique_id=1755408987]
+tile_map_data = PackedByteArray("AAAFAP3/AwAEAAAAAAAFAP7/AwAEAAEAAAAFAP//AwAEAAIAAAAGAP3/AwAFAAAAAAAGAP7/AwAFAAEAAAAGAP//AwAFAAIAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="o_bedroom_2_door" parent="Bedroom_2/doors" unique_id=475314626 node_paths=PackedStringArray("LinkedDoor") instance=ExtResource("2_etat2")]
+position = Vector2(96, -24)
+scale = Vector2(1, 2)
+LinkedDoor = NodePath("../../../Hall_1/doors/o_to_bedroom_2_door")
+LocalExitMarkerPosition = Vector2(0, 5)
+
+[node name="furniture" type="TileMapLayer" parent="Bedroom_2" unique_id=339351933]
+tile_map_data = PackedByteArray("AAACAP7/AQAKAAMAAAACAP//AQAKAAQAAAACAAAAAQAKAAUAAAD4////AQADAAAAAAD4/wAAAQADAAEAAAD5////AQAEAAAAAAD5/wAAAQAEAAEAAAD6////AQAFAAMAAAD6/wAAAQAFAAQAAAD6/wEAAQAFAAUAAAD7////AQAGAAMAAAD7/wAAAQAGAAQAAAD7/wEAAQAGAAUAAAD8////AQAHAAMAAAD8/wAAAQAHAAQAAAD8/wEAAQAHAAUAAAD9////AQAIAAMAAAD9/wAAAQAIAAQAAAD9/wEAAQAIAAUAAAD+//7/AQAFAAAAAAD+////AQAFAAEAAAD+/wAAAQAFAAIAAAD///7/AQAGAAAAAAD/////AQAGAAEAAAD//wAAAQAGAAIAAAAAAP7/AQAHAAAAAAAAAP//AQAHAAEAAAAAAAAAAQAHAAIAAAABAP7/AQAIAAAAAAABAP//AQAIAAEAAAABAAAAAQAIAAIAAAAEAP7/AQAKAAAAAAAHAAAAAQAJAAAAAAAHAAEAAQAJAAEAAAAHAAIAAQAJAAIAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="Document-001" parent="Bedroom_2" unique_id=1428563663 instance=ExtResource("3_etat2")]
+position = Vector2(-75, 8.000001)
+scale = Vector2(0.7, 0.7)
+objectType = 3
+Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque.
+Aliquam porttitor mauris sit amet orci. Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin justo dolor sit amet lorem. Vivamus eget elit. Integer eu purus. Sed vestibulum libero a augue. Cras ac lectus. Praesent sagittis. Nam at metus. Phasellus enim. Cras at lorem. Integer eget mauris. Proin mattis lacinia justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia.
+Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper felis id sapien. Proin quam. Aliquam libero. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
+Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.
+Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy non, nibh. Nullam sagittis. Suspendisse pulvinar, augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque velit justo quis mauris. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce aliquam velit eu sem. Cras nec ante. Vivamus suscipit nibh eget odio."
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bedroom_2/Document-001" unique_id=901631662]
+sprite_frames = ExtResource("5_ak3yg")
+animation = &"paper_white"
+
+[node name="Kitchen" type="Node2D" parent="." unique_id=584078238]
+position = Vector2(-384, 0)
+
+[node name="base" type="TileMapLayer" parent="Kitchen" unique_id=438284542]
+tile_map_data = PackedByteArray("AAD4/wAAAAAEAAcAAAD4/wEAAAAEAAYAAAD5/wAAAAAFAAcAAAD5/wEAAAAFAAYAAAD6/wAAAAAGAAcAAAD6/wEAAAAGAAYAAAD7/wAAAAAHAAcAAAD7/wEAAAAHAAYAAAD4/wIAAAAEAAcAAAD4/wMAAAAEAAYAAAD5/wIAAAAFAAcAAAD5/wMAAAAFAAYAAAD6/wIAAAAGAAcAAAD6/wMAAAAGAAYAAAD7/wIAAAAHAAcAAAD7/wMAAAAHAAYAAAD8/wAAAAAEAAcAAAD8/wEAAAAEAAYAAAD9/wAAAAAFAAcAAAD9/wEAAAAFAAYAAAD+/wAAAAAGAAcAAAD+/wEAAAAGAAYAAAD//wAAAAAHAAcAAAD//wEAAAAHAAYAAAD8/wIAAAAEAAcAAAD8/wMAAAAEAAYAAAD9/wIAAAAFAAcAAAD9/wMAAAAFAAYAAAD+/wIAAAAGAAcAAAD+/wMAAAAGAAYAAAD//wIAAAAHAAcAAAD//wMAAAAHAAYAAAAAAAAAAAAEAAcAAAAAAAEAAAAEAAYAAAABAAAAAAAFAAcAAAABAAEAAAAFAAYAAAACAAAAAAAGAAcAAAACAAEAAAAGAAYAAAADAAAAAAAHAAcAAAADAAEAAAAHAAYAAAAAAAIAAAAEAAcAAAAAAAMAAAAEAAYAAAABAAIAAAAFAAcAAAABAAMAAAAFAAYAAAACAAIAAAAGAAcAAAACAAMAAAAGAAYAAAADAAIAAAAHAAcAAAADAAMAAAAHAAYAAAAEAAAAAAAEAAcAAAAEAAEAAAAEAAYAAAAFAAAAAAAFAAcAAAAFAAEAAAAFAAYAAAAGAAAAAAAGAAcAAAAGAAEAAAAGAAYAAAAHAAAAAAAHAAcAAAAHAAEAAAAHAAYAAAAEAAIAAAAEAAcAAAAEAAMAAAAEAAYAAAAFAAIAAAAFAAcAAAAFAAMAAAAFAAYAAAAGAAIAAAAGAAcAAAAGAAMAAAAGAAYAAAAHAAIAAAAHAAcAAAAHAAMAAAAHAAYAAAD4////AAAGAAIAAAD5////AAAHAAIAAAD6////AAAHAAIAAAD7////AAAHAAIAAAD8////AAAHAAIAAAD9////AAAHAAIAAAD+////AAAHAAIAAAD/////AAAHAAIAAAAAAP//AAAHAAIAAAABAP//AAAHAAIAAAACAP//AAAHAAIAAAADAP//AAAHAAIAAAAEAP//AAAHAAIAAAAFAP//AAAHAAIAAAAGAP//AAAHAAIAAAAHAP//AAAGAAIAABD5//7/AAACAAIAAAD6//7/AAACAAIAAAD7//7/AAACAAIAAAD8//7/AAACAAIAAAD9//7/AAACAAIAAAD+//7/AAACAAIAAAD///7/AAACAAIAAAAAAP7/AAACAAIAAAABAP7/AAACAAIAAAACAP7/AAACAAIAAAADAP7/AAACAAIAAAAEAP7/AAACAAIAAAAFAP7/AAACAAIAAAAGAP7/AAACAAIAAAAHAP7/AAABAAIAABD4//7/AAABAAIAAAD4//z/AAAEAAEAABAHAPz/AAAEAAEAAAD5//z/AAADAAEAAAD6//z/AAADAAEAAAD7//z/AAADAAEAAAD8//z/AAADAAEAAAD9//z/AAADAAEAAAD+//z/AAADAAEAAAD///z/AAADAAEAAAAAAPz/AAADAAEAAAABAPz/AAADAAEAAAACAPz/AAADAAEAAAADAPz/AAADAAEAAAAEAPz/AAADAAEAAAAFAPz/AAADAAEAAAAGAPz/AAADAAEAAAD4//3/AAABAAIAAAAHAP3/AAABAAIAABD5//3/AAADAAIAABD6//3/AAADAAIAABD7//3/AAADAAIAABD8//3/AAADAAIAABD9//3/AAADAAIAABD+//3/AAADAAIAABD///3/AAADAAIAABAAAP3/AAADAAIAABABAP3/AAADAAIAABACAP3/AAADAAIAABADAP3/AAADAAIAABAEAP3/AAADAAIAABAFAP3/AAADAAIAABAGAP3/AAADAAIAABA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="carpet" type="TileMapLayer" parent="Kitchen/base" unique_id=572781950]
+tile_map_data = PackedByteArray("AAAHAAAAAgABAAAAAAAGAAAAAgABAAAAAAAFAAAAAgABAAAAAAAEAAAAAgABAAAAAAADAAAAAgABAAAAAAACAAAAAgAAAAAAAAACAAEAAgAAAAEAAAACAAIAAgAAAAEAAAACAAMAAgAAAAEAAAADAAEAAgABAAEAAAADAAIAAgABAAEAAAADAAMAAgABAAEAAAAEAAMAAgABAAEAAAAFAAMAAgABAAEAAAAGAAMAAgABAAEAAAAHAAMAAgABAAEAAAAHAAIAAgABAAEAAAAHAAEAAgABAAEAAAAGAAEAAgABAAEAAAAFAAEAAgABAAEAAAAFAAIAAgABAAEAAAAEAAIAAgABAAEAAAAGAAIAAgABAAEAAAAEAAEAAgABAAEAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="border" type="TileMapLayer" parent="Kitchen" unique_id=347423743]
+z_index = 999
+tile_map_data = PackedByteArray("AAD3//v/AAAAAAAAAAD3/wQAAAAAAAAAACAIAAQAAAAAAAAAADAIAPv/AAAAAAAAABD4//v/AAABAAAAAAD5//v/AAABAAAAAAD6//v/AAABAAAAAAD7//v/AAABAAAAAAD8//v/AAABAAAAAAD9//v/AAABAAAAAAD+//v/AAABAAAAAAD///v/AAABAAAAAAAAAPv/AAABAAAAAAABAPv/AAABAAAAAAACAPv/AAABAAAAAAADAPv/AAABAAAAAAAEAPv/AAABAAAAAAAFAPv/AAABAAAAAAAGAPv/AAABAAAAAAAHAPv/AAABAAAAAAAIAPz/AAAFAAEAAAAIAP3/AAAFAAEAAAAIAP7/AAAFAAEAAAAIAP//AAAFAAEAAAAIAAAAAAAFAAEAAAAIAAEAAAAFAAEAAAAIAAIAAAAFAAEAAAAIAAMAAAAFAAEAAAD3//z/AAAFAAEAADD3//3/AAAFAAEAADD3//7/AAAFAAEAADD3////AAAFAAEAADD3/wAAAAAFAAEAADD3/wEAAAAFAAEAADD3/wIAAAAFAAEAADD3/wMAAAAFAAEAADD4/wQAAAABAAAAACD5/wQAAAABAAAAACD6/wQAAAABAAAAACD7/wQAAAABAAAAACD8/wQAAAABAAAAACD9/wQAAAABAAAAACD+/wQAAAABAAAAACD//wQAAAABAAAAACAAAAQAAAABAAAAACABAAQAAAABAAAAACACAAQAAAABAAAAACADAAQAAAABAAAAACAEAAQAAAABAAAAACAFAAQAAAABAAAAACAGAAQAAAABAAAAACAHAAQAAAABAAAAACA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="doors" type="TileMapLayer" parent="Kitchen" unique_id=1885567513]
+tile_map_data = PackedByteArray("AAACAP3/AwAAAAAAAAACAP7/AwAAAAEAAAACAP//AwAAAAIAAAADAP3/AwABAAAAAAADAP7/AwABAAEAAAADAP//AwABAAIAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="door_frames" type="TileMapLayer" parent="Kitchen/doors" unique_id=435819918]
+tile_map_data = PackedByteArray("AAACAP3/AwAEAAAAAAACAP7/AwAEAAEAAAACAP//AwAEAAIAAAADAP3/AwAFAAAAAAADAP7/AwAFAAEAAAADAP//AwAFAAIAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="o_kitchen_door" parent="Kitchen/doors" unique_id=1213900632 node_paths=PackedStringArray("LinkedDoor") instance=ExtResource("2_etat2")]
+position = Vector2(48, -24)
+scale = Vector2(1, 2)
+LinkedDoor = NodePath("../../../Hall_1/doors/o_to_kitchen_door")
+LocalExitMarkerPosition = Vector2(0, 5)
+
+[node name="furniture_1" type="TileMapLayer" parent="Kitchen" unique_id=602806566]
+tile_map_data = PackedByteArray("AAAEAAEABwAAAAAAAAAEAAIABwAAAAEAAAAFAAIABwAAAAEAAAAGAAEABwAAAAAAAAAGAAIABwAAAAEAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="furniture" type="TileMapLayer" parent="Kitchen" unique_id=285405888]
+tile_map_data = PackedByteArray("AAD6////BQAAAAAAAAD6/wAABQAAAAEAAAD7////BQABAAAAAAD7/wAABQABAAEAAAD8////BQACAAAAAAD8/wAABQACAAEAAAD9////BQACAAIAAAD9/wAABQACAAMAAAD+////BQACAAIAAAD+/wAABQACAAMAAAD/////BQAEAAAAAAD//wAABQAEAAEAAAD4//7/BAAAAAAAAAD4////BAAAAAEAAAD4/wAABAAAAAIAAAD5//7/BAABAAAAAAD5////BAABAAEAAAD5/wAABAABAAIAAAADAAIABwACAAAAAAADAAMABwACAAEAAAAEAAIABwAAAAIAAAAEAAMABwAAAAMAAAAFAAIABwABAAIAAAAFAAMABwABAAMAAAAGAAIABwACAAIAAAAGAAMABwACAAMAAAAHAAIABwACAAAAABAHAAMABwACAAEAABD4/wEAAQADAAMAAAD4/wIAAQADAAQAAAD4/wMAAQADAAUAAAD5/wEAAQAEAAMAAAD5/wIAAQAEAAQAAAD5/wMAAQAEAAUAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="Document-002" parent="Kitchen" unique_id=1668990333 instance=ExtResource("3_etat2")]
+position = Vector2(-112, 38.000004)
+scale = Vector2(0.7, 0.7)
+objectType = 3
+Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque.
+Aliquam porttitor mauris sit amet orci. Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin justo dolor sit amet lorem. Vivamus eget elit. Integer eu purus. Sed vestibulum libero a augue. Cras ac lectus. Praesent sagittis. Nam at metus. Phasellus enim. Cras at lorem. Integer eget mauris. Proin mattis lacinia justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia.
+Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper felis id sapien. Proin quam. Aliquam libero. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
+Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.
+Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy non, nibh. Nullam sagittis. Suspendisse pulvinar, augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque velit justo quis mauris. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce aliquam velit eu sem. Cras nec ante. Vivamus suscipit nibh eget odio."
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Kitchen/Document-002" unique_id=1329313475]
+sprite_frames = ExtResource("5_ak3yg")
+animation = &"paper_white"
+
+[node name="Key" parent="Kitchen" unique_id=2015982573 node_paths=PackedStringArray("DoorToUnlock") instance=ExtResource("3_etat2")]
+position = Vector2(-22, -7.9999995)
+rotation = -2.3928463
+scale = Vector2(0.7, 0.7)
+objectType = 4
+DoorToUnlock = NodePath("../../Hall_1/doors/o_to_bedroom_1_door")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Kitchen/Key" unique_id=1496317363]
+sprite_frames = ExtResource("5_ak3yg")
+animation = &"key"
+
+[node name="Bedroom_1" type="Node2D" parent="." unique_id=1446407288]
+position = Vector2(384, 0)
+
+[node name="border" type="TileMapLayer" parent="Bedroom_1" unique_id=1981832098]
+z_index = 999
+tile_map_data = PackedByteArray("AAD3//v/AAAAAAAAAAD3/wQAAAAAAAAAACAIAAQAAAAAAAAAADAIAPv/AAAAAAAAABD4//v/AAABAAAAAAD5//v/AAABAAAAAAD6//v/AAABAAAAAAD7//v/AAABAAAAAAD8//v/AAABAAAAAAD9//v/AAABAAAAAAD+//v/AAABAAAAAAD///v/AAABAAAAAAAAAPv/AAABAAAAAAABAPv/AAABAAAAAAACAPv/AAABAAAAAAADAPv/AAABAAAAAAAEAPv/AAABAAAAAAAFAPv/AAABAAAAAAAGAPv/AAABAAAAAAAHAPv/AAABAAAAAAAIAPz/AAAFAAEAAAAIAP3/AAAFAAEAAAAIAP7/AAAFAAEAAAAIAP//AAAFAAEAAAAIAAAAAAAFAAEAAAAIAAEAAAAFAAEAAAAIAAIAAAAFAAEAAAAIAAMAAAAFAAEAAAD3//z/AAAFAAEAADD3//3/AAAFAAEAADD3//7/AAAFAAEAADD3////AAAFAAEAADD3/wAAAAAFAAEAADD3/wEAAAAFAAEAADD3/wIAAAAFAAEAADD3/wMAAAAFAAEAADD4/wQAAAABAAAAACD5/wQAAAABAAAAACD6/wQAAAABAAAAACD7/wQAAAABAAAAACD8/wQAAAABAAAAACD9/wQAAAABAAAAACD+/wQAAAABAAAAACD//wQAAAABAAAAACAAAAQAAAABAAAAACABAAQAAAABAAAAACACAAQAAAABAAAAACADAAQAAAABAAAAACAEAAQAAAABAAAAACAFAAQAAAABAAAAACAGAAQAAAABAAAAACAHAAQAAAABAAAAACA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="base" type="TileMapLayer" parent="Bedroom_1" unique_id=2006495119]
+tile_map_data = PackedByteArray("AAD4/wAAAAAEAAcAAAD4/wEAAAAEAAYAAAD5/wAAAAAFAAcAAAD5/wEAAAAFAAYAAAD6/wAAAAAGAAcAAAD6/wEAAAAGAAYAAAD7/wAAAAAHAAcAAAD7/wEAAAAHAAYAAAD4/wIAAAAEAAcAAAD4/wMAAAAEAAYAAAD5/wIAAAAFAAcAAAD5/wMAAAAFAAYAAAD6/wIAAAAGAAcAAAD6/wMAAAAGAAYAAAD7/wIAAAAHAAcAAAD7/wMAAAAHAAYAAAD8/wAAAAAEAAcAAAD8/wEAAAAEAAYAAAD9/wAAAAAFAAcAAAD9/wEAAAAFAAYAAAD+/wAAAAAGAAcAAAD+/wEAAAAGAAYAAAD//wAAAAAHAAcAAAD//wEAAAAHAAYAAAD8/wIAAAAEAAcAAAD8/wMAAAAEAAYAAAD9/wIAAAAFAAcAAAD9/wMAAAAFAAYAAAD+/wIAAAAGAAcAAAD+/wMAAAAGAAYAAAD//wIAAAAHAAcAAAD//wMAAAAHAAYAAAAAAAAAAAAEAAcAAAAAAAEAAAAEAAYAAAABAAAAAAAFAAcAAAABAAEAAAAFAAYAAAACAAAAAAAGAAcAAAACAAEAAAAGAAYAAAADAAAAAAAHAAcAAAADAAEAAAAHAAYAAAAAAAIAAAAEAAcAAAAAAAMAAAAEAAYAAAABAAIAAAAFAAcAAAABAAMAAAAFAAYAAAACAAIAAAAGAAcAAAACAAMAAAAGAAYAAAADAAIAAAAHAAcAAAADAAMAAAAHAAYAAAAEAAAAAAAEAAcAAAAEAAEAAAAEAAYAAAAFAAAAAAAFAAcAAAAFAAEAAAAFAAYAAAAGAAAAAAAGAAcAAAAGAAEAAAAGAAYAAAAHAAAAAAAHAAcAAAAHAAEAAAAHAAYAAAAEAAIAAAAEAAcAAAAEAAMAAAAEAAYAAAAFAAIAAAAFAAcAAAAFAAMAAAAFAAYAAAAGAAIAAAAGAAcAAAAGAAMAAAAGAAYAAAAHAAIAAAAHAAcAAAAHAAMAAAAHAAYAAAD4////AAAGAAIAAAD5////AAAHAAIAAAD6////AAAHAAIAAAD7////AAAHAAIAAAD8////AAAHAAIAAAD9////AAAHAAIAAAD+////AAAHAAIAAAD/////AAAHAAIAAAAAAP//AAAHAAIAAAABAP//AAAHAAIAAAACAP//AAAHAAIAAAADAP//AAAHAAIAAAAEAP//AAAHAAIAAAAFAP//AAAHAAIAAAAGAP//AAAHAAIAAAAHAP//AAAGAAIAABD5//7/AAACAAIAAAD6//7/AAACAAIAAAD7//7/AAACAAIAAAD8//7/AAACAAIAAAD9//7/AAACAAIAAAD+//7/AAACAAIAAAD///7/AAACAAIAAAAAAP7/AAACAAIAAAABAP7/AAACAAIAAAACAP7/AAACAAIAAAADAP7/AAACAAIAAAAEAP7/AAACAAIAAAAFAP7/AAACAAIAAAAGAP7/AAACAAIAAAAHAP7/AAABAAIAABD4//7/AAABAAIAAAD4//z/AAAEAAEAABAHAPz/AAAEAAEAAAD5//z/AAADAAEAAAD6//z/AAADAAEAAAD7//z/AAADAAEAAAD8//z/AAADAAEAAAD9//z/AAADAAEAAAD+//z/AAADAAEAAAD///z/AAADAAEAAAAAAPz/AAADAAEAAAABAPz/AAADAAEAAAACAPz/AAADAAEAAAADAPz/AAADAAEAAAAEAPz/AAADAAEAAAAFAPz/AAADAAEAAAAGAPz/AAADAAEAAAD4//3/AAABAAIAAAAHAP3/AAABAAIAABD5//3/AAADAAIAABD6//3/AAADAAIAABD7//3/AAADAAIAABD8//3/AAADAAIAABD9//3/AAADAAIAABD+//3/AAADAAIAABD///3/AAADAAIAABAAAP3/AAADAAIAABABAP3/AAADAAIAABACAP3/AAADAAIAABADAP3/AAADAAIAABAEAP3/AAADAAIAABAFAP3/AAADAAIAABAGAP3/AAADAAIAABA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="carpet" type="TileMapLayer" parent="Bedroom_1/base" unique_id=1159498872]
+tile_map_data = PackedByteArray("AAAHAAMAAgABAAIAAAAHAAAAAgABAAAAAAAGAAMAAgABAAIAAAAFAAMAAgABAAIAAAAEAAMAAgABAAIAAAADAAMAAgABAAIAAAACAAMAAgABAAIAAAABAAMAAgABAAIAAAAAAAMAAgABAAIAAAD//wMAAgABAAIAAAD//wIAAgABAAEAAAD//wEAAgABAAEAAAD//wAAAgABAAAAAAAHAAIAAgABAAEAAAAHAAEAAgABAAEAAAAAAAEAAgABAAEAAAAAAAIAAgABAAEAAAABAAIAAgABAAEAAAACAAIAAgABAAEAAAADAAIAAgABAAEAAAAEAAIAAgABAAEAAAAFAAIAAgABAAEAAAAGAAIAAgABAAEAAAAGAAEAAgABAAEAAAAFAAEAAgABAAEAAAAEAAEAAgABAAEAAAADAAEAAgABAAEAAAACAAEAAgABAAEAAAABAAEAAgABAAEAAAAAAAAAAgABAAAAAAABAAAAAgABAAAAAAACAAAAAgABAAAAAAADAAAAAgABAAAAAAAEAAAAAgABAAAAAAAFAAAAAgABAAAAAAAGAAAAAgABAAAAAAD+/wAAAgAAAAAAAAD+/wMAAgAAAAAAACD+/wEAAgAAAAEAAAD+/wIAAgAAAAEAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="doors" type="TileMapLayer" parent="Bedroom_1" unique_id=1033277497]
+tile_map_data = PackedByteArray("AAD5//3/AwAAAAAAAAD5//7/AwAAAAEAAAD5////AwAAAAIAAAD6//3/AwABAAAAAAD6//7/AwABAAEAAAD6////AwABAAIAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="door_frames" type="TileMapLayer" parent="Bedroom_1/doors" unique_id=2112319908]
+tile_map_data = PackedByteArray("AAD5//3/AwAEAAAAAAD5//7/AwAEAAEAAAD5////AwAEAAIAAAD6//3/AwAFAAAAAAD6//7/AwAFAAEAAAD6////AwAFAAIAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="o_bedroom_1_door" parent="Bedroom_1/doors" unique_id=1529215490 node_paths=PackedStringArray("LinkedDoor") instance=ExtResource("2_etat2")]
+position = Vector2(-96, -24)
+scale = Vector2(1, 2)
+LinkedDoor = NodePath("../../../Hall_1/doors/o_to_bedroom_1_door")
+LocalExitMarkerPosition = Vector2(0, 1.5)
+
+[node name="furniture" type="TileMapLayer" parent="Bedroom_1" unique_id=1969684853]
+tile_map_data = PackedByteArray("AAAFAP//AQAAAAAAAAAFAAAAAQAAAAEAAAAFAAEAAQAAAAIAAAAGAP//AQABAAAAAAAGAAAAAQABAAEAAAAGAAEAAQABAAIAAAAHAP//AQACAAAAAAAHAAAAAQACAAEAAAADAP//AQADAAAAAAADAAAAAQADAAEAAAAEAP//AQAEAAAAAAAEAAAAAQAEAAEAAAACAP7/AQAKAAMAAAACAP//AQAKAAQAAAACAAAAAQAKAAUAAAD7//7/AQAKAAAAAAD/////AQAAAAQAAAD//wAAAQAAAAUAAAAAAP7/AQABAAMAAAAAAP//AQABAAQAAAAAAAAAAQABAAUAAAABAP//AQACAAQAAAABAAAAAQACAAUAAAAHAAEAAQACAAIAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="library" type="TileMapLayer" parent="Bedroom_1" unique_id=558523254]
+tile_map_data = PackedByteArray("AAAHAAAAAQAJAAAAAAAHAAEAAQAJAAEAAAAHAAIAAQAJAAIAAAA=")
+tile_set = ExtResource("2_4xo1b")
+
+[node name="Document-003" parent="Bedroom_1" unique_id=1251689967 instance=ExtResource("3_etat2")]
+position = Vector2(63.999996, -5.999999)
+scale = Vector2(0.7, 0.7)
+objectType = 3
+Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque.
+Aliquam porttitor mauris sit amet orci. Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin justo dolor sit amet lorem. Vivamus eget elit. Integer eu purus. Sed vestibulum libero a augue. Cras ac lectus. Praesent sagittis. Nam at metus. Phasellus enim. Cras at lorem. Integer eget mauris. Proin mattis lacinia justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia.
+Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper felis id sapien. Proin quam. Aliquam libero. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
+Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.
+Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy non, nibh. Nullam sagittis. Suspendisse pulvinar, augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque velit justo quis mauris. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce aliquam velit eu sem. Cras nec ante. Vivamus suscipit nibh eget odio."
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bedroom_1/Document-003" unique_id=504849470]
+sprite_frames = ExtResource("5_ak3yg")
+animation = &"paper_white"

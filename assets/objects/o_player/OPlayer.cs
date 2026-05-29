@@ -18,9 +18,13 @@ public partial class OPlayer: CharacterBody2D
 
     // # Private Variables # //
     #region Private Variables
-    private ODoor enteredDoor;
+    private Timer generalTimer = new Timer();
+    private ODoor enteredDoor = null;
     private AnimatedSprite2D spriteAnimator;
     private string lastAnimation = string.Empty;
+    private Label objectNameLabel = null;
+    private Panel objectInfoPanel = null;
+    private Panel doorInfoPanel = null;
     #endregion
     // # ----------------- # //
 
@@ -85,6 +89,36 @@ public partial class OPlayer: CharacterBody2D
             ErrorHandler.ThrowError( "[OPlayer.cs/_Ready] - Failed to retrieve the reference to the main camera. Make sure to add one as a child of the main scene.", ErrorHandler.ErrorType.GENERIC_ERROR );
         }
 
+        // check if the object name label is inside the player, if not return an error message.
+        objectNameLabel = FindChild( "objectNameLabel", true ) as Label;
+        if( objectNameLabel == null )
+        {
+            ErrorHandler.ThrowError( "[OPlayer.cs/_Ready] - Failed to find the object name label. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
+        }
+
+        // check if the object info panel is inside the player, if not return an error message.
+        objectInfoPanel = FindChild( "objectInfoPanel", true ) as Panel;
+        if( objectInfoPanel == null )
+        {
+            ErrorHandler.ThrowError( "[OPlayer.cs/_Ready] - Failed to find the object info panel. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
+        }
+
+        // check if the door info panel is inside the player, if not return an error message.
+        doorInfoPanel = FindChild( "doorInfoPanel", true ) as Panel;
+        if( doorInfoPanel == null )
+        {
+            ErrorHandler.ThrowError( "[OPlaye.cs/_Ready] - Failed to find the door info panel. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
+        }
+        else doorInfoPanel.Visible = false;
+
+        // * mouse entering object event listeners
+        EventHandler.ListenForEvent<OGeneric>( EventHandler.EventType.MOUSE_ENTERED, UpdateObjectNameLabel );
+        EventHandler.ListenForEvent( EventHandler.EventType.MOUSE_EXITED, ResetObjectNameLabel );
+
+
+        // TODO checks if debug mode is on.
+        if( SharedVariables.IS_DEBUG_MODE == false ) return;
+
         //TODO debug only, remove or add a check for debug and release builds.
         // check if the debug_error_text is inside the player, if not return an error message.
         debug_error_text = FindChild( "debug_error_text", true ) as Label;
@@ -106,15 +140,21 @@ public partial class OPlayer: CharacterBody2D
         {
             ErrorHandler.ThrowError( $"[OPlayer.cs/_Ready] - Failed to find the tabControl. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
         }
+        else tabControl.Visible = true;
 
+        // TODO // * generic event listeners for debug
         EventHandler.ListenForEvent( EventHandler.EventType.ERROR_OCCURRED, UpdateDebugErrorText );
         EventHandler.ListenForEvent( EventHandler.EventType.PLAYER_INFO_UPDATED, UpdateDebugInfoText );
+
+        // * intial trigger for some events
         CallDeferred( nameof( TriggerInitialEvents ) );
     }
 
+    // just to trigger an initial update of the debug_info_text.
     private void TriggerInitialEvents( )
     {
-        EventHandler.TriggerEvent( EventHandler.EventType.PLAYER_INFO_UPDATED ); // just to trigger an initial update of the debug_info_text.
+        // TODO debug event trigger
+        EventHandler.TriggerEvent( EventHandler.EventType.PLAYER_INFO_UPDATED );
     }
 
 
@@ -205,6 +245,8 @@ public partial class OPlayer: CharacterBody2D
             EventHandler.TriggerEvent( EventHandler.EventType.TUTORIAL_PLAYER_RUNNING, 2 );
         }
 
+
+        if( SharedVariables.IS_DEBUG_MODE == false ) return;
         //TODO debug only, remove or add a check for debug and release builds.
         if( @event.IsActionPressed( "debug_clear_error" ) )
         {
@@ -221,14 +263,32 @@ public partial class OPlayer: CharacterBody2D
 
 
     // # Interaction Logic # //
-    private bool TryInteractWithDoor( )
+    private void TryInteractWithDoor( )
     {
         //* DOOR LOGIC
         // check the door is reade to teleport the player, if not, return an error message. This is crucial as we dont want the player to be teleported even if they're not colliding with any door.
+
+
+        if( enteredDoor.IsLocked == true )
+        {
+            if( doorInfoPanel == null ) return;
+            doorInfoPanel.Visible = true;
+            generalTimer.WaitTime = .8f;
+            generalTimer.OneShot = true;
+            AddChild( generalTimer );
+            generalTimer.Timeout += ( ) =>
+            {
+                doorInfoPanel.Visible = false;
+                RemoveChild( generalTimer );
+            };
+            generalTimer.Start( );
+            return;
+        }
+
         if( this.readyToTeleport == false )
         {
             ErrorHandler.ThrowError( $"[OPlayer.cs/Interaction Input] - The player is not ready for teleportation as it's not colliding with a valid door. this.readyToTeleport: {this.readyToTeleport}", ErrorHandler.ErrorType.GENERIC_ERROR );
-            return false;
+            return;
         }
 
         // teleport the player to the new position.
@@ -242,17 +302,33 @@ public partial class OPlayer: CharacterBody2D
         if( newParent == null || doorParent == null )
         {
             ErrorHandler.ThrowError( "[OPlayer.cs/_Input] - Failed to get a reference to the door's parent.", ErrorHandler.ErrorType.GENERIC_ERROR );
-            return false;
+            return;
         }
         mainCameraRef.Reparent( newParent );
         mainCameraRef.GlobalPosition = newParent.Position; // switch the camera position.
 
         EventHandler.TriggerEvent( EventHandler.EventType.PLAYER_INFO_UPDATED );
-        return true;
+        return;
     }
 
 
     // # Signals # //
+
+    private void UpdateObjectNameLabel( OGeneric _object )
+    {
+        if( objectNameLabel == null || objectInfoPanel == null ) return; // do nothing if the label is not found.
+        objectNameLabel.Text = _object.Name;
+        objectInfoPanel.Visible = true;
+    }
+
+    private void ResetObjectNameLabel( )
+    {
+        if( objectNameLabel == null || objectInfoPanel == null ) return;
+        objectNameLabel.Text = string.Empty;
+        objectInfoPanel.Visible = false;
+    }
+
+
     private void InteractionAreaEntered( Area2D area )
     {
         // get the door from wich is parent of the area that entered the player interaction area.

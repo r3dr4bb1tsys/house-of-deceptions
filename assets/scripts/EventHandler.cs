@@ -11,12 +11,15 @@ public partial class EventHandler: Node
         PLAYER_INFO_UPDATED = 2,
         AREA_ENTERED = 3,
         TRIGGER_AREA_ENTERED = 4,
+        MOUSE_ENTERED = 9,
+        MOUSE_EXITED = 10,
 
         TUTORIAL_PLAYER_MOVEMENT = 5,
         TUTORIAL_PLAYER_RUNNING = 6,
         TUTORIAL_PLAYER_INTERACT = 7,
-        TUTORIAL_COMPLETED = 8
+        TUTORIAL_COMPLETED = 8,
     }
+
     public static Dictionary<EventType, Delegate> events = new();
     /// <summary>
     /// Listen for an event with data.
