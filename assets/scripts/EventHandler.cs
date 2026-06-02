@@ -15,7 +15,7 @@ public partial class EventHandler: Node
         MOUSE_EXITED = 10,
 
         TUTORIAL_PLAYER_MOVEMENT = 5,
-        TUTORIAL_PLAYER_RUNNING = 6,
+        TUTORIAL_PLAYER_PICKED_FLASHLIGHT = 6,
         TUTORIAL_PLAYER_INTERACT = 7,
         TUTORIAL_COMPLETED = 8,
     }

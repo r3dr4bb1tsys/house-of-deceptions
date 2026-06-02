@@ -14,6 +14,7 @@ public partial class OPlayer: CharacterBody2D
         public const string MoveDown = "playerMoveDown";
         public const string Run = "playerRun";
         public const string Interact = "playerInteract";
+        public const string ToggleFlashLight = "ToggleFlashLight";
     }
 
     // # Private Variables # //
@@ -25,6 +26,7 @@ public partial class OPlayer: CharacterBody2D
     private Label objectNameLabel = null;
     private Panel objectInfoPanel = null;
     private Panel doorInfoPanel = null;
+    private PointLight2D player_flash_light = null;
     #endregion
     // # ----------------- # //
 
@@ -111,9 +113,17 @@ public partial class OPlayer: CharacterBody2D
         }
         else doorInfoPanel.Visible = false;
 
+        // check if the player_flash_light is inside the playe, if not return an error message.
+        player_flash_light = FindChild( "player_flash_light", true ) as PointLight2D;
+        if( player_flash_light == null )
+        {
+            ErrorHandler.ThrowError( "[OPlayer.cs/_Ready] - Failed to find player_flash_light. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
+        }
+
         // * mouse entering object event listeners
         EventHandler.ListenForEvent<OGeneric>( EventHandler.EventType.MOUSE_ENTERED, UpdateObjectNameLabel );
         EventHandler.ListenForEvent( EventHandler.EventType.MOUSE_EXITED, ResetObjectNameLabel );
+
 
 
         // TODO checks if debug mode is on.
@@ -148,6 +158,20 @@ public partial class OPlayer: CharacterBody2D
 
         // * intial trigger for some events
         CallDeferred( nameof( TriggerInitialEvents ) );
+    }
+
+    public override void _ExitTree( )
+    {
+        base._ExitTree( );
+
+        // 1. Unsubscribe the standard gameplay event listeners
+        // (Assuming your EventHandler has a corresponding "RemoveListener" or "StopListening" method)
+        EventHandler.StopListeningToEvent<OGeneric>( EventHandler.EventType.MOUSE_ENTERED, UpdateObjectNameLabel );
+        EventHandler.StopListeningToEvent( EventHandler.EventType.MOUSE_EXITED, ResetObjectNameLabel );
+
+        // 2. Unsubscribe the debug event listeners
+        EventHandler.StopListeningToEvent( EventHandler.EventType.ERROR_OCCURRED, UpdateDebugErrorText );
+        EventHandler.StopListeningToEvent( EventHandler.EventType.PLAYER_INFO_UPDATED, UpdateDebugInfoText );
     }
 
     // just to trigger an initial update of the debug_info_text.
@@ -225,8 +249,8 @@ public partial class OPlayer: CharacterBody2D
         //* Interaction
         if( @event.IsActionPressed( PlayerActions.Interact ) )
         {
-            TryInteractWithDoor( );
             EventHandler.TriggerEvent( EventHandler.EventType.TUTORIAL_PLAYER_INTERACT, 3 );
+            if( enteredDoor.doorType != ODoor.DoorType.GATE ) TryInteractWithDoor( );
         }
 
         // trigger movement related events
@@ -240,9 +264,9 @@ public partial class OPlayer: CharacterBody2D
             EventHandler.TriggerEvent( EventHandler.EventType.TUTORIAL_PLAYER_MOVEMENT, 1 );
         }
 
-        if( @event.IsActionPressed( PlayerActions.Run ) )
+        if (@event.IsActionPressed(PlayerActions.ToggleFlashLight) && player_flash_light != null)
         {
-            EventHandler.TriggerEvent( EventHandler.EventType.TUTORIAL_PLAYER_RUNNING, 2 );
+            player_flash_light.Visible = !player_flash_light.Visible;
         }
 
 
@@ -291,15 +315,16 @@ public partial class OPlayer: CharacterBody2D
             return;
         }
 
+
         // teleport the player to the new position.
         newPosition = enteredDoor.LinkedDoor.LocalExitMarker.GlobalPosition;
         this.TeleportTo( newPosition );
 
 
         //* Change the camera's parent to the linked door's parent, and switch it's position to the new parent's position.
-        Node2D doorParent = enteredDoor.LinkedDoor.GetParent() as Node2D; // get the door parent
-        Node2D newParent = doorParent.GetParent() as Node2D;
-        if( newParent == null || doorParent == null )
+        Node2D linkedDoorParent = enteredDoor.LinkedDoor.GetParent() as Node2D; // get the door parent
+        Node2D newParent = linkedDoorParent.GetParent() as Node2D;
+        if( newParent == null || linkedDoorParent == null )
         {
             ErrorHandler.ThrowError( "[OPlayer.cs/_Input] - Failed to get a reference to the door's parent.", ErrorHandler.ErrorType.GENERIC_ERROR );
             return;
@@ -338,6 +363,11 @@ public partial class OPlayer: CharacterBody2D
         {
             newPosition = enteredDoor.LinkedDoor.LocalExitMarker.GlobalPosition;
             this.readyToTeleport = true;
+        }
+
+        if (enteredDoor.doorType == ODoor.DoorType.GATE)    // only do it if the door is of gate type (instant teleportation without input)
+        {
+            TryInteractWithDoor( );
         }
 
         //TODO debug only, remove or add a check for debug and release builds.

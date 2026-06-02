@@ -8,6 +8,12 @@ public partial class ODoor: Node2D
     private ODoor _linkedDoor = null;
     private Vector2 _localExitMarkerPosition = Vector2.Zero;
     private bool _is_locked = false;
+    private DoorType _door_type = DoorType.DEFAULT;
+    public enum DoorType
+    {
+        DEFAULT = 0,
+        GATE = 1
+    }
     // # ----------------- # //
 
 
@@ -16,6 +22,12 @@ public partial class ODoor: Node2D
     // # ---------------- # // 
 
     // # Export Varianles # //
+    [Export]
+    public DoorType doorType
+    {
+        get => _door_type;
+        set => _door_type = value;
+    }
     [Export]
     public ODoor LinkedDoor
     {

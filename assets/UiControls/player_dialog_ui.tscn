@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bkw6fgi1430vd"]
+
+[ext_resource type="Theme" uid="uid://c5ccfk2vewxm1" path="res://assets/Themes/menu_label_theme.tres" id="1_5ckiq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ow6rx"]
+bg_color = Color(0.078431375, 0.078431375, 0.078431375, 0.56078434)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 12
+
+[node name="PlayerDialogUi" type="Control" unique_id=2050155885]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=535585906]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer" unique_id=1662658210]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ow6rx")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/Panel" unique_id=1331675380]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/ScrollContainer" unique_id=91301781]
+custom_minimum_size = Vector2(350, 150)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource("1_5ckiq")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

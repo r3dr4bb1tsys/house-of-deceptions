@@ -2,6 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://ce8gknr7yfpq8" path="res://assets/sprites/sprite_objects.png" id="1_1omh3"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1omh3"]
+atlas = ExtResource("1_1omh3")
+region = Rect2(32, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7yixr"]
 atlas = ExtResource("1_1omh3")
 region = Rect2(16, 16, 16, 16)
@@ -20,6 +24,14 @@ region = Rect2(0, 16, 16, 16)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1omh3")
+}],
+"loop": true,
+"name": &"flash_light",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7yixr")

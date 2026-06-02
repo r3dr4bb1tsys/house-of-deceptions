@@ -24,7 +24,7 @@ public partial class TutorialScene: Node2D
         // listen for events.
         EventHandler.ListenForEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_MOVEMENT, PlayNextAnimation );
         EventHandler.ListenForEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_INTERACT, PlayNextAnimation );
-        EventHandler.ListenForEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_RUNNING, PlayNextAnimation );
+        EventHandler.ListenForEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_PICKED_FLASHLIGHT, PlayNextAnimation );
 
         EventHandler.TriggerEvent( EventHandler.EventType.TUTORIAL_PLAYER_MOVEMENT, 0 ); // trigger initial tutorial stage
     }
@@ -75,7 +75,13 @@ public partial class TutorialScene: Node2D
                 stagesCompleted.Add( tutorialStage );
                 EventHandler.StopListeningToEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_MOVEMENT, PlayNextAnimation );
                 EventHandler.StopListeningToEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_INTERACT, PlayNextAnimation );
-                EventHandler.StopListeningToEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_RUNNING, PlayNextAnimation );
+                EventHandler.StopListeningToEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_PICKED_FLASHLIGHT, PlayNextAnimation );
+
+                PackedScene scene_1 = GD.Load<PackedScene>("res://assets/scenes/scene_1.tscn");
+                if (scene_1 != null)
+                {
+                    GetTree( ).ChangeSceneToPacked( scene_1 );
+                }
                 break;
             }
         }

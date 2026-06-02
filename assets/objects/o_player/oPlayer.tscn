@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://c5ccfk2vewxm1" path="res://assets/Themes/menu_label_theme.tres" id="3_2mr2l"]
 [ext_resource type="PackedScene" uid="uid://d1gwx3yo2vkpt" path="res://assets/UiControls/game_menu.tscn" id="3_xgc40"]
 [ext_resource type="Theme" uid="uid://do1riuq1kmcyn" path="res://assets/Themes/tab_theme.tres" id="4_ufs0r"]
+[ext_resource type="PackedScene" uid="uid://bkw6fgi1430vd" path="res://assets/UiControls/player_dialog_ui.tscn" id="6_rs7q3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_puxa6"]
 atlas = ExtResource("1_o07kb")
@@ -148,6 +149,7 @@ animations = [{
 size = Vector2(12, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iv8vd"]
+radius = 8.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_xgc40"]
 line_spacing = 0.0
@@ -160,16 +162,28 @@ font_size = 13
 font_size = 13
 font_color = Color(1.2318419, 0, 0, 1)
 
+[sub_resource type="Gradient" id="Gradient_rs7q3"]
+colors = PackedColorArray(1, 1, 0.7764706, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jjvay"]
+gradient = SubResource("Gradient_rs7q3")
+fill = 1
+fill_from = Vector2(0.47435898, 0.50427353)
+fill_to = Vector2(0.82905984, 0.2777778)
+
 [node name="oPlayer" type="CharacterBody2D" unique_id=831620466 groups=["Player"]]
+z_index = 100
 script = ExtResource("1_iv8vd")
 
 [node name="spriteAnimator" type="AnimatedSprite2D" parent="." unique_id=1844162252]
+light_mask = 2
 sprite_frames = SubResource("SpriteFrames_3u2np")
 animation = &"backIdle"
 autoplay = "frontIdle"
 
 [node name="player_shadow" type="Sprite2D" parent="spriteAnimator" unique_id=260186373]
 modulate = Color(1, 1, 1, 0.2627451)
+z_index = -1
 position = Vector2(0, 30)
 texture = ExtResource("1_o07kb")
 hframes = 4
@@ -187,6 +201,9 @@ position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_iv8vd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=358472109]
+
+[node name="PlayerDialogUi" parent="CanvasLayer" unique_id=2050155885 instance=ExtResource("6_rs7q3")]
+visible = false
 
 [node name="PlayerUi" type="Control" parent="CanvasLayer" unique_id=1343323302]
 layout_mode = 3
@@ -321,3 +338,9 @@ label_settings = SubResource("LabelSettings_ufs0r")
 justification_flags = 160
 metadata/_tab_index = 2
 metadata/_tab_name = "Errors"
+
+[node name="player_flash_light" type="PointLight2D" parent="." unique_id=1093822903]
+visible = false
+scale = Vector2(2, 2)
+range_item_cull_mask = 7
+texture = SubResource("GradientTexture2D_jjvay")

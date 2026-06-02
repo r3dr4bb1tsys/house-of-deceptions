@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dfhvyoupbfa06"]
+
+[ext_resource type="Script" uid="uid://chqmwtroyck0a" path="res://assets/objects/o_game_action_manager/GameActionManager.cs" id="1_dfnh7"]
+
+[node name="GameActionManager" type="Node2D" unique_id=2068488774]
+script = ExtResource("1_dfnh7")
