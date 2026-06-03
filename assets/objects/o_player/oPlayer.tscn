@@ -146,7 +146,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28quv"]
-size = Vector2(12, 16)
+size = Vector2(12, 11)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iv8vd"]
 radius = 8.0
@@ -191,7 +191,7 @@ vframes = 7
 frame = 24
 
 [node name="collisionBox" type="CollisionShape2D" parent="." unique_id=1474943631]
-position = Vector2(0, 24)
+position = Vector2(0, 26.5)
 shape = SubResource("RectangleShape2D_28quv")
 
 [node name="playerInteactionArea" type="Area2D" parent="." unique_id=931368051 groups=["PlayerInteactionArea"]]

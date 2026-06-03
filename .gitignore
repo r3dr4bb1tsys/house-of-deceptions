@@ -6,3 +6,6 @@ export/
 *.pck
 *.zip
 *.godot
+*.kra
+*.import
+*.png~

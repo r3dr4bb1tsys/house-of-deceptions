@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dhq7jugxo8edk" path="res://assets/objects/o_player/oPlayer.tscn" id="3_3ensd"]
 [ext_resource type="TileSet" uid="uid://3j4ygehfbvhi" path="res://assets/resources/game_tile_set.tres" id="3_4i0b5"]
 [ext_resource type="PackedScene" uid="uid://byg4aciowuk06" path="res://assets/objects/o_generic/OGeneric.tscn" id="4_3ensd"]
-[ext_resource type="PackedScene" uid="uid://dfhvyoupbfa06" path="res://assets/UiControls/game_action_manager.tscn" id="5_elxl1"]
+[ext_resource type="PackedScene" uid="uid://dfhvyoupbfa06" path="res://assets/objects/o_game_action_manager/game_action_manager.tscn" id="5_elxl1"]
 [ext_resource type="SpriteFrames" uid="uid://c0nl4chbadcwi" path="res://assets/resources/game_sprite_frames.tres" id="6_elxl1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4i0b5"]
@@ -297,9 +297,10 @@ autoplay = &"stage_0"
 tile_map_data = PackedByteArray("AAD3//v/AAAGAAAAAAD3//z/AAAGAAAAAAD3//3/AAAGAAAAAAD3//7/AAAGAAAAAAD3////AAAGAAAAAAD3/wAAAAAGAAAAAAD3/wEAAAAGAAAAAAD3/wIAAAAGAAAAAAD3/wMAAAAGAAAAAAD3/wQAAAAGAAAAAAD4/wQAAAAGAAAAAAD5/wQAAAAGAAAAAAD6/wQAAAAGAAAAAAD7/wQAAAAGAAAAAAD8/wQAAAAGAAAAAAD9/wQAAAAGAAAAAAD+/wQAAAAGAAAAAAD//wQAAAAGAAAAAAAAAAQAAAAGAAAAAAABAAQAAAAGAAAAAAACAAQAAAAGAAAAAAADAAQAAAAGAAAAAAAEAAQAAAAGAAAAAAAFAAQAAAAGAAAAAAAGAAQAAAAGAAAAAAAHAAQAAAAGAAAAAAAIAAQAAAAGAAAAAAAIAAMAAAAGAAAAAAAIAAIAAAAGAAAAAAAIAAEAAAAGAAAAAAAIAAAAAAAGAAAAAAAIAP//AAAGAAAAAAAIAP7/AAAGAAAAAAAIAP3/AAAGAAAAAAAIAPz/AAAGAAAAAAAIAPv/AAAGAAAAAAAHAPv/AAAGAAAAAAAGAPv/AAAGAAAAAAAFAPv/AAAGAAAAAAAEAPv/AAAGAAAAAAADAPv/AAAGAAAAAAACAPv/AAAGAAAAAAABAPv/AAAGAAAAAAAAAPv/AAAGAAAAAAD///v/AAAGAAAAAAD+//v/AAAGAAAAAAD9//v/AAAGAAAAAAD8//v/AAAGAAAAAAD7//v/AAAGAAAAAAD6//v/AAAGAAAAAAD5//v/AAAGAAAAAAD4//v/AAAGAAAAAAA=")
 tile_set = ExtResource("3_4i0b5")
 
-[node name="Flashlight" parent="." unique_id=1428563663 instance=ExtResource("4_3ensd")]
+[node name="Flashlight" parent="." unique_id=1428563663 node_paths=PackedStringArray("GameActionManager") instance=ExtResource("4_3ensd")]
 position = Vector2(64, -32)
 objectType = 1
+GameActionManager = NodePath("GameActionManager")
 
 [node name="GameActionManager" parent="Flashlight" unique_id=2068488774 instance=ExtResource("5_elxl1")]
 Action = 2

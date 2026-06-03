@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dhq7jugxo8edk" path="res://assets/objects/o_player/oPlayer.tscn" id="3_ak3yg"]
 [ext_resource type="PackedScene" uid="uid://byg4aciowuk06" path="res://assets/objects/o_generic/OGeneric.tscn" id="3_etat2"]
 [ext_resource type="SpriteFrames" uid="uid://c0nl4chbadcwi" path="res://assets/resources/game_sprite_frames.tres" id="5_ak3yg"]
+[ext_resource type="PackedScene" uid="uid://dfhvyoupbfa06" path="res://assets/objects/o_game_action_manager/game_action_manager.tscn" id="6_f8qs5"]
 
 [sub_resource type="Gradient" id="Gradient_hq177"]
 colors = PackedColorArray(0.95686275, 1, 0.7176471, 1, 1, 1, 1, 1)
@@ -23,12 +24,12 @@ fill_to = Vector2(0.8803419, 0.18803419)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p0eib"]
 closed = false
-polygon = PackedVector2Array(92, 26, 115, 26, 115, 29)
+polygon = PackedVector2Array(91, 26, 116, 26, 116, 29)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_o4ebw"]
 closed = false
 cull_mode = 2
-polygon = PackedVector2Array(-36.000004, 25, -36.000004, 22, -77, 22)
+polygon = PackedVector2Array(-36.000004, 25, -36.000004, 22, -83, 17)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_f8qs5"]
 closed = false
@@ -37,7 +38,7 @@ polygon = PackedVector2Array(37, 11, 37, 7, 14.999992, 7)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_isofo"]
 closed = false
 cull_mode = 2
-polygon = PackedVector2Array(-60.000008, 11, -60.000008, 8, -83.00001, 8)
+polygon = PackedVector2Array(-60.000008, 12, -60.000008, 8, -83.00001, 8)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ak3yg"]
 closed = false
@@ -57,11 +58,11 @@ polygon = PackedVector2Array(88, 29, 91, 29, 91, 28, 92, 28, 92, 26, 115, 26)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_f460a"]
 closed = false
-polygon = PackedVector2Array(52, 15, 54, 12, 74, 12, 77, 15)
+polygon = PackedVector2Array(51, 15, 54, 12, 74, 12, 77, 15)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_u5rh3"]
 closed = false
-polygon = PackedVector2Array(25, 15, 23, 15, 23, 14, 22, 14, 22, 9, -6, 9)
+polygon = PackedVector2Array(26, 15, 23, 15, 23, 14, 22, 14, 22, 9, -6, 9)
 
 [node name="Scene_1" type="Node2D" unique_id=966062069]
 
@@ -189,7 +190,6 @@ scale = Vector2(7, 7)
 energy = 0.8
 range_item_cull_mask = 7
 shadow_enabled = true
-shadow_filter = 2
 texture = SubResource("GradientTexture2D_f8qs5")
 
 [node name="Occluders" type="Node2D" parent="Bedroom_2/Lights" unique_id=1048914162]
@@ -274,7 +274,7 @@ tile_set = ExtResource("2_4xo1b")
 
 [node name="furniture" type="TileMapLayer" parent="Kitchen" unique_id=285405888]
 light_mask = 2
-tile_map_data = PackedByteArray("AAD6////BQAAAAAAAAD6/wAABQAAAAEAAAD7////BQABAAAAAAD7/wAABQABAAEAAAD8////BQACAAAAAAD8/wAABQACAAEAAAD9////BQACAAIAAAD9/wAABQACAAMAAAD+////BQACAAIAAAD+/wAABQACAAMAAAD/////BQAEAAAAAAD//wAABQAEAAEAAAD4//7/BAAAAAAAAAD4////BAAAAAEAAAD4/wAABAAAAAIAAAD5//7/BAABAAAAAAD5////BAABAAEAAAD5/wAABAABAAIAAAADAAIABwACAAAAAAADAAMABwACAAEAAAAEAAIABwAAAAIAAAAEAAMABwAAAAMAAAAFAAIABwABAAIAAAAFAAMABwABAAMAAAAGAAIABwACAAIAAAAGAAMABwACAAMAAAAHAAIABwACAAAAABAHAAMABwACAAEAABD4/wEAAQADAAMAAAD4/wIAAQADAAQAAAD4/wMAAQADAAUAAAD5/wEAAQAEAAMAAAD5/wIAAQAEAAQAAAD5/wMAAQAEAAUAAAA=")
+tile_map_data = PackedByteArray("AAD6////BQAAAAAAAAD6/wAABQAAAAEAAAD7////BQABAAAAAAD7/wAABQABAAEAAAD8////BQACAAAAAAD8/wAABQACAAEAAAD9////BQACAAIAAAD9/wAABQACAAMAAAD+////BQACAAIAAAD+/wAABQACAAMAAAD/////BQAEAAAAAAD//wAABQAEAAEAAAADAAIABwACAAAAAAADAAMABwACAAEAAAAEAAIABwAAAAIAAAAEAAMABwAAAAMAAAAFAAIABwABAAIAAAAFAAMABwABAAMAAAAGAAIABwACAAIAAAAGAAMABwACAAMAAAAHAAIABwACAAAAABAHAAMABwACAAEAABD4/wIAAQADAAQAAAD4/wMAAQADAAUAAAD5/wEAAQAEAAMAAAD5/wIAAQAEAAQAAAD5/wMAAQAEAAUAAAD4/wEAAQADAAMAAAA=")
 tile_set = ExtResource("2_4xo1b")
 
 [node name="Document-002" parent="Kitchen" unique_id=1668990333 instance=ExtResource("3_etat2")]
@@ -311,6 +311,25 @@ scale = Vector2(0.41538268, 0.7772875)
 skew = 0.17453292
 energy = 0.5
 texture = SubResource("GradientTexture2D_hq177")
+
+[node name="Fridge" parent="Kitchen" unique_id=1830765695 node_paths=PackedStringArray("GameActionManager") instance=ExtResource("3_etat2")]
+position = Vector2(-112, -9)
+scale = Vector2(1.5, 2.5)
+objectType = 6
+GameActionManager = NodePath("GameActionManager")
+
+[node name="GameActionManager" parent="Kitchen/Fridge" unique_id=2068488774 node_paths=PackedStringArray("AnimatedSprite") instance=ExtResource("6_f8qs5")]
+Action = 3
+AnimatedSprite = NodePath("../AnimatedSprite2D")
+ToggleBetweenFrames = true
+FrameAnimation_1 = "fridge_opened"
+FrameAnimation_2 = "fridge_closed"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Kitchen/Fridge" unique_id=2127777943]
+top_level = true
+position = Vector2(-496, -9)
+sprite_frames = ExtResource("5_ak3yg")
+animation = &"fridge_closed"
 
 [node name="Bedroom_1" type="Node2D" parent="." unique_id=1446407288]
 position = Vector2(524, 0)
@@ -406,7 +425,6 @@ z_as_relative = false
 scale = Vector2(6, 6)
 range_item_cull_mask = 7
 shadow_enabled = true
-shadow_filter = 2
 texture = SubResource("GradientTexture2D_f8qs5")
 
 [node name="Bathroom" type="Node2D" parent="." unique_id=348055761]

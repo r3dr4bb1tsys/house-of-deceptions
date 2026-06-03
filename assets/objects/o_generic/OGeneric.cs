@@ -12,7 +12,8 @@ public partial class OGeneric: Node2D
         Trigger = 2,
         Document = 3,
         Key = 4,
-        Light = 5
+        Light = 5,
+        TriggerGameActionManager = 6
     }
     // # ---------------- # // 
 
@@ -23,7 +24,6 @@ public partial class OGeneric: Node2D
     private ODoor _door_to_unlock = null;
     private GameActionManager game_action_manger = null;
     private PointLight2D object_light = null;
-
     // # UI Variables # //
     private CanvasLayer canvas = null;
     private PaperUi paper_ui = null;
@@ -65,6 +65,14 @@ public partial class OGeneric: Node2D
         get => object_light;
         set => object_light = value;
     }
+
+    [ExportSubgroup("Triiger Game Action Manager")]
+    [Export]
+    public GameActionManager GameActionManager
+    {
+        get => game_action_manger;
+        set => game_action_manger = value;
+    }
     // # ---------------- # //
 
 
@@ -97,46 +105,59 @@ public partial class OGeneric: Node2D
         }
         else paper_ui.UpdateContent( _content );
 
-        //check if the object has a game_action_manager.
-        game_action_manger = FindChild( "GameActionManager", true ) as GameActionManager;
 
     }
 
 
-    // FIXME // * Important, apparently i've discovered a bug: When the player is moving (so if an input key is being pressed) while also this input key is being pressed. I've tried to turn on and off a lamp while moving the player, and basically if i hold the mouse left button while the player is moving, the mouse input fires everytime while the mouse left button is still being pressed, i dont know if i want to keep this feature but it can be annoying.
+    //- FIXME Important, apparently i've discovered a bug: When the player is moving (so if an input key is being pressed) while also this input key is being pressed. I've tried to turn on and off a lamp while moving the player, and basically if i hold the mouse left button while the player is moving, the mouse input fires everytime while the mouse left button is still being pressed, i dont know if i want to keep this feature but it can be annoying.
     public override void _Input( InputEvent @event )
     {
-        if( Input.IsMouseButtonPressed( MouseButton.Left ) && _isMouseInside == true )   // left clicked on the object and interact with it.
+        if (@event is InputEventMouseButton inputEventMouseButton)
         {
-            // TODO // * refactor this. Add the specific method for each logic.
-            switch( _objectType )
+            if (inputEventMouseButton.ButtonIndex == MouseButton.Left && inputEventMouseButton.Pressed && _isMouseInside == true)
             {
-                case ObjectType.Document:
-                {
-                    paper_ui.Visible = true;
-                    break;
-                }
+                HandleMouseEvent( );
+            }
+        }
+    }
 
-                case ObjectType.Key:
-                {
-                    if( _door_to_unlock == null ) return;
-                    _door_to_unlock.IsLocked = false;
-                    EventHandler.TriggerEvent( EventHandler.EventType.MOUSE_EXITED ); // here just to hide the player object info panel. KEEP IT HERE
-                    this.QueueFree( );
-                    break;
-                }
-                
-                case ObjectType.Light:
-                {
-                    ToggleLight( );
-                    break;
-                }
-                case ObjectType.Pickable:
-                {
-                    if( game_action_manger == null ) return;
-                    game_action_manger.TriggerAction( );
-                    break;
-                }
+
+    private void HandleMouseEvent()
+    {
+        // TODO // * refactor this. Add the specific method for each logic.
+        switch( _objectType )
+        {
+            case ObjectType.Document:
+            {
+                paper_ui.Visible = true;
+                break;
+            }
+
+            case ObjectType.Key:
+            {
+                if( _door_to_unlock == null ) return;
+                _door_to_unlock.IsLocked = false;
+                EventHandler.TriggerEvent( EventHandler.EventType.MOUSE_EXITED ); // here just to hide the player object info panel. KEEP IT HERE
+                this.QueueFree( );
+                break;
+            }
+
+            case ObjectType.Light:
+            {
+                ToggleLight( );
+                break;
+            }
+            case ObjectType.Pickable:
+            {
+                if( game_action_manger == null ) return;
+                game_action_manger.TriggerAction( );
+                break;
+            }
+            case ObjectType.TriggerGameActionManager:
+            {
+                if( game_action_manger == null ) return;
+                game_action_manger.TriggerAction( );
+                break;
             }
         }
     }
