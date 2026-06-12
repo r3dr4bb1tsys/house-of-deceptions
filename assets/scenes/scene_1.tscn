@@ -156,7 +156,7 @@ LocalExitMarkerPosition = Vector2(0, 5)
 
 [node name="furniture" type="TileMapLayer" parent="Bedroom_2" unique_id=339351933]
 light_mask = 2
-tile_map_data = PackedByteArray("AAACAP//AQAKAAQAAAACAAAAAQAKAAUAAAD4////AQADAAAAAAD4/wAAAQADAAEAAAD5////AQAEAAAAAAD5/wAAAQAEAAEAAAD6////AQAFAAMAAAD6/wAAAQAFAAQAAAD6/wEAAQAFAAUAAAD7////AQAGAAMAAAD7/wAAAQAGAAQAAAD7/wEAAQAGAAUAAAD8////AQAHAAMAAAD8/wAAAQAHAAQAAAD8/wEAAQAHAAUAAAD9////AQAIAAMAAAD9/wAAAQAIAAQAAAD9/wEAAQAIAAUAAAD+//7/AQAFAAAAAAD+////AQAFAAEAAAD+/wAAAQAFAAIAAAD///7/AQAGAAAAAAD/////AQAGAAEAAAD//wAAAQAGAAIAAAAAAP7/AQAHAAAAAAAAAP//AQAHAAEAAAAAAAAAAQAHAAIAAAABAP7/AQAIAAAAAAABAP//AQAIAAEAAAABAAAAAQAIAAIAAAAHAAAAAQAJAAAAAAAHAAEAAQAJAAEAAAAHAAIAAQAJAAIAAAACAP7/AQAKAAMAAAA=")
+tile_map_data = PackedByteArray("AAD4////AQADAAAAAAD4/wAAAQADAAEAAAD5////AQAEAAAAAAD5/wAAAQAEAAEAAAD6////AQAFAAMAAAD6/wAAAQAFAAQAAAD6/wEAAQAFAAUAAAD7////AQAGAAMAAAD7/wAAAQAGAAQAAAD7/wEAAQAGAAUAAAD8////AQAHAAMAAAD8/wAAAQAHAAQAAAD8/wEAAQAHAAUAAAD9////AQAIAAMAAAD9/wAAAQAIAAQAAAD9/wEAAQAIAAUAAAD+//7/AQAFAAAAAAD+////AQAFAAEAAAD+/wAAAQAFAAIAAAD///7/AQAGAAAAAAD/////AQAGAAEAAAD//wAAAQAGAAIAAAAAAP7/AQAHAAAAAAAAAP//AQAHAAEAAAAAAAAAAQAHAAIAAAABAP7/AQAIAAAAAAABAP//AQAIAAEAAAABAAAAAQAIAAIAAAAHAAAAAQAJAAAAAAAHAAIAAQAJAAIAAAAHAAEAAQAJAAEAAAA=")
 tile_set = ExtResource("2_4xo1b")
 
 [node name="Document-001" parent="Bedroom_2" unique_id=1428563663 instance=ExtResource("3_etat2")]
@@ -176,11 +176,13 @@ animation = &"paper_white"
 
 [node name="Lights" type="Node2D" parent="Bedroom_2" unique_id=1451862900]
 
-[node name="Lamp" parent="Bedroom_2/Lights" unique_id=248607696 node_paths=PackedStringArray("ObjectLight") instance=ExtResource("3_etat2")]
-position = Vector2(40, -20)
+[node name="Lamp" parent="Bedroom_2/Lights" unique_id=248607696 node_paths=PackedStringArray("ObjectLight", "GameActionManager") instance=ExtResource("3_etat2")]
+position = Vector2(41, -19)
 scale = Vector2(0.8, 0.8)
 objectType = 5
 ObjectLight = NodePath("lamp_light")
+UseGameActionManager = true
+GameActionManager = NodePath("GameActionManager")
 
 [node name="lamp_light" type="PointLight2D" parent="Bedroom_2/Lights/Lamp" unique_id=1869483106]
 visible = false
@@ -191,6 +193,19 @@ energy = 0.8
 range_item_cull_mask = 7
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_f8qs5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bedroom_2/Lights/Lamp" unique_id=400960214]
+position = Vector2(2.220273e-06, 13.750002)
+scale = Vector2(1.113281, 1.2005209)
+sprite_frames = ExtResource("5_ak3yg")
+animation = &"lamp_off"
+
+[node name="GameActionManager" parent="Bedroom_2/Lights/Lamp" unique_id=2068488774 node_paths=PackedStringArray("AnimatedSprite") instance=ExtResource("6_f8qs5")]
+Action = 3
+AnimatedSprite = NodePath("../AnimatedSprite2D")
+ToggleBetweenFrames = true
+FrameAnimation_1 = "lamp_on"
+FrameAnimation_2 = "lamp_off"
 
 [node name="Occluders" type="Node2D" parent="Bedroom_2/Lights" unique_id=1048914162]
 
@@ -318,7 +333,7 @@ scale = Vector2(1.5, 2.5)
 objectType = 6
 GameActionManager = NodePath("GameActionManager")
 
-[node name="GameActionManager" parent="Kitchen/Fridge" unique_id=2068488774 node_paths=PackedStringArray("AnimatedSprite") instance=ExtResource("6_f8qs5")]
+[node name="GameActionManager" parent="Kitchen/Fridge" unique_id=825461122 node_paths=PackedStringArray("AnimatedSprite") instance=ExtResource("6_f8qs5")]
 Action = 3
 AnimatedSprite = NodePath("../AnimatedSprite2D")
 ToggleBetweenFrames = true
@@ -370,7 +385,7 @@ LocalExitMarkerPosition = Vector2(25, 0)
 
 [node name="furniture" type="TileMapLayer" parent="Bedroom_1" unique_id=1969684853]
 light_mask = 2
-tile_map_data = PackedByteArray("AAAFAP//AQAAAAAAAAAFAAAAAQAAAAEAAAAFAAEAAQAAAAIAAAAGAP//AQABAAAAAAAGAAAAAQABAAEAAAAGAAEAAQABAAIAAAAHAP//AQACAAAAAAAHAAAAAQACAAEAAAADAP//AQADAAAAAAADAAAAAQADAAEAAAAEAP//AQAEAAAAAAAEAAAAAQAEAAEAAAACAP7/AQAKAAMAAAACAP//AQAKAAQAAAACAAAAAQAKAAUAAAD/////AQAAAAQAAAD//wAAAQAAAAUAAAAAAP7/AQABAAMAAAAAAP//AQABAAQAAAAAAAAAAQABAAUAAAABAP//AQACAAQAAAABAAAAAQACAAUAAAAHAAEAAQACAAIAAAA=")
+tile_map_data = PackedByteArray("AAAFAP//AQAAAAAAAAAFAAAAAQAAAAEAAAAFAAEAAQAAAAIAAAAGAP//AQABAAAAAAAGAAAAAQABAAEAAAAGAAEAAQABAAIAAAAHAP//AQACAAAAAAAHAAAAAQACAAEAAAADAP//AQADAAAAAAADAAAAAQADAAEAAAAEAP//AQAEAAAAAAAEAAAAAQAEAAEAAAD/////AQAAAAQAAAD//wAAAQAAAAUAAAAAAP7/AQABAAMAAAAAAP//AQABAAQAAAAAAAAAAQABAAUAAAABAP//AQACAAQAAAABAAAAAQACAAUAAAAHAAEAAQACAAIAAAA=")
 tile_set = ExtResource("2_4xo1b")
 
 [node name="library" type="TileMapLayer" parent="Bedroom_1" unique_id=558523254]
@@ -412,20 +427,36 @@ modulate = Color(1, 1, 1, 0)
 occluder = SubResource("OccluderPolygon2D_u5rh3")
 occluder_light_mask = 5
 
-[node name="Lamp" parent="Bedroom_1/Lights" unique_id=852238359 node_paths=PackedStringArray("ObjectLight") instance=ExtResource("3_etat2")]
-position = Vector2(39.999996, -19.999998)
+[node name="Lamp" parent="Bedroom_1/Lights" unique_id=1492468629 node_paths=PackedStringArray("ObjectLight", "GameActionManager") instance=ExtResource("3_etat2")]
+position = Vector2(38.999996, -19)
 scale = Vector2(0.8, 0.8)
 objectType = 5
 ObjectLight = NodePath("lamp_light")
+UseGameActionManager = true
+GameActionManager = NodePath("GameActionManager")
 
-[node name="lamp_light" type="PointLight2D" parent="Bedroom_1/Lights/Lamp" unique_id=1265322578]
+[node name="lamp_light" type="PointLight2D" parent="Bedroom_1/Lights/Lamp" unique_id=955852042]
 visible = false
 light_mask = 0
 z_as_relative = false
-scale = Vector2(6, 6)
+scale = Vector2(7, 7)
+energy = 0.8
 range_item_cull_mask = 7
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_f8qs5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bedroom_1/Lights/Lamp" unique_id=1151316418]
+position = Vector2(2.220273e-06, 13.750002)
+scale = Vector2(1.113281, 1.2005209)
+sprite_frames = ExtResource("5_ak3yg")
+animation = &"lamp_off"
+
+[node name="GameActionManager" parent="Bedroom_1/Lights/Lamp" unique_id=1055477577 node_paths=PackedStringArray("AnimatedSprite") instance=ExtResource("6_f8qs5")]
+Action = 3
+AnimatedSprite = NodePath("../AnimatedSprite2D")
+ToggleBetweenFrames = true
+FrameAnimation_1 = "lamp_on"
+FrameAnimation_2 = "lamp_off"
 
 [node name="Bathroom" type="Node2D" parent="." unique_id=348055761]
 position = Vector2(320, 0)

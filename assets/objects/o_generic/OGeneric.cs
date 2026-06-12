@@ -24,6 +24,7 @@ public partial class OGeneric: Node2D
     private ODoor _door_to_unlock = null;
     private GameActionManager game_action_manger = null;
     private PointLight2D object_light = null;
+    private bool _use_game_action_manager = false;
     // # UI Variables # //
     private CanvasLayer canvas = null;
     private PaperUi paper_ui = null;
@@ -66,7 +67,13 @@ public partial class OGeneric: Node2D
         set => object_light = value;
     }
 
-    [ExportSubgroup("Triiger Game Action Manager")]
+    [ExportSubgroup("Game Action Manager")]
+    [Export]
+    public bool UseGameActionManager
+    {
+        get => _use_game_action_manager;
+        set => _use_game_action_manager = value;
+    }
     [Export]
     public GameActionManager GameActionManager
     {
@@ -117,6 +124,7 @@ public partial class OGeneric: Node2D
             if (inputEventMouseButton.ButtonIndex == MouseButton.Left && inputEventMouseButton.Pressed && _isMouseInside == true)
             {
                 HandleMouseEvent( );
+                EventHandler.TriggerEvent( EventHandler.EventType.TUTORIAL_PLAYER_PICKED_FLASHLIGHT, 3 );
             }
         }
     }
@@ -125,6 +133,12 @@ public partial class OGeneric: Node2D
     private void HandleMouseEvent()
     {
         // TODO // * refactor this. Add the specific method for each logic.
+
+        if( _use_game_action_manager != false )
+        {
+            game_action_manger.TriggerAction( );
+        }
+
         switch( _objectType )
         {
             case ObjectType.Document:
@@ -147,6 +161,7 @@ public partial class OGeneric: Node2D
                 ToggleLight( );
                 break;
             }
+            // TODO Add pick item logic.
             case ObjectType.Pickable:
             {
                 if( game_action_manger == null ) return;
@@ -160,6 +175,7 @@ public partial class OGeneric: Node2D
                 break;
             }
         }
+
     }
 
     private void OnMouseEntered( )

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ce8gknr7yfpq8" path="res://assets/sprites/sprite_objects.png" id="1_1omh3"]
 [ext_resource type="Texture2D" uid="uid://xjab356feid3" path="res://assets/sprites/sprite_fridge.png" id="2_7yixr"]
+[ext_resource type="Texture2D" uid="uid://lfmk6wlag11s" path="res://assets/sprites/sprite_lamp.png" id="3_2kewg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1omh3"]
 atlas = ExtResource("1_1omh3")
@@ -18,6 +19,14 @@ region = Rect2(32, 0, 32, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7yixr"]
 atlas = ExtResource("1_1omh3")
 region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1kqa"]
+atlas = ExtResource("3_2kewg")
+region = Rect2(16, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5ta5"]
+atlas = ExtResource("3_2kewg")
+region = Rect2(0, 0, 16, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2kewg"]
 atlas = ExtResource("1_1omh3")
@@ -63,6 +72,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"key",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1kqa")
+}],
+"loop": true,
+"name": &"lamp_off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5ta5")
+}],
+"loop": true,
+"name": &"lamp_on",
 "speed": 5.0
 }, {
 "frames": [{

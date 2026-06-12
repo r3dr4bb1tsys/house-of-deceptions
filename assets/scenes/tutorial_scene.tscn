@@ -6,16 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://byg4aciowuk06" path="res://assets/objects/o_generic/OGeneric.tscn" id="4_3ensd"]
 [ext_resource type="PackedScene" uid="uid://dfhvyoupbfa06" path="res://assets/objects/o_game_action_manager/game_action_manager.tscn" id="5_elxl1"]
 [ext_resource type="SpriteFrames" uid="uid://c0nl4chbadcwi" path="res://assets/resources/game_sprite_frames.tres" id="6_elxl1"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_4i0b5"]
-font_size = 13
+[ext_resource type="Theme" uid="uid://c5ccfk2vewxm1" path="res://assets/Themes/menu_label_theme.tres" id="7_icdss"]
 
 [sub_resource type="Animation" id="Animation_3ensd"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_0:position")
+tracks/0/path = NodePath("tutorial_dialog_layer/tutorial_label_0:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_1:position")
+tracks/1/path = NodePath("tutorial_dialog_layer/tutorial_label_1:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -39,14 +37,270 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_2:position")
+tracks/2/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_1:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(576, 677)]
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_3:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_4:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_5:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_6:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_7:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_8:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_9:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("oPlayer:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Flashlight:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_yo4xw"]
+resource_name = "begin_introduction"
+length = 35.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 1.8, 4, 4.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.6000004, 4.9000006, 7.1000004, 7.4000006),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.99607843), Color(1, 1, 1, 0.99607843), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7.7, 8, 10.2, 10.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(10.8, 11.1, 13.3, 13.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_5:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(13.9, 14.2, 16.699999, 17),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.99215686), Color(1, 1, 1, 0.99215686), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_6:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(17.3, 17.6, 20.633333, 20.933332),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.9843137), Color(1, 1, 1, 0.9843137), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_7:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(21.533335, 21.833334, 24.333334, 24.633333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_8:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(24.933332, 25.233332, 28.733334, 29.033333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("initial_dialog_layer/Control/Panel/MarginContainer/introduction_label_9:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(31.066668, 31.36667, 33.36667, 33.666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.99215686), Color(1, 1, 1, 0.99215686), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("oPlayer:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 34.300003),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Flashlight:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 29.233334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_elxl1"]
@@ -55,7 +309,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_0:position")
+tracks/0/path = NodePath("tutorial_dialog_layer/tutorial_label_0:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -71,7 +325,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_0:position")
+tracks/0/path = NodePath("tutorial_dialog_layer/tutorial_label_0:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +337,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_1:position")
+tracks/1/path = NodePath("tutorial_dialog_layer/tutorial_label_1:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -99,35 +353,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(576, 437), Vector2(576, 677)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(576, 677), Vector2(576, 437)]
-}
-
-[sub_resource type="Animation" id="Animation_uormo"]
-resource_name = "stage_completed"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("oPlayer/CanvasLayer2/tutorial_label_2:position")
+tracks/0/path = NodePath("tutorial_dialog_layer/tutorial_label_1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -140,150 +366,22 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_icdss"]
 _data = {
 &"RESET": SubResource("Animation_3ensd"),
+&"begin_introduction": SubResource("Animation_yo4xw"),
 &"stage_0": SubResource("Animation_elxl1"),
 &"stage_1": SubResource("Animation_cs318"),
-&"stage_2": SubResource("Animation_icdss"),
-&"stage_completed": SubResource("Animation_uormo")
+&"stage_2": SubResource("Animation_icdss")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_4i0b5"]
+font_size = 13
 
 [node name="TutorialScene" type="Node2D" unique_id=45415432]
 script = ExtResource("1_cs318")
 
 [node name="oPlayer" parent="." unique_id=831620466 groups=["PlayerInteactionArea"] instance=ExtResource("3_3ensd")]
+visible = false
 z_index = 10
 position = Vector2(0, 16)
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="oPlayer" unique_id=288119862]
-
-[node name="tutorial_label_0" type="Control" parent="oPlayer/CanvasLayer2" unique_id=1829667302]
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_top = 677.0
-offset_bottom = 677.0
-grow_horizontal = 2
-
-[node name="Panel" type="Panel" parent="oPlayer/CanvasLayer2/tutorial_label_0" unique_id=902095410]
-custom_minimum_size = Vector2(400, 150)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_top = 30.0
-offset_right = 200.0
-offset_bottom = 180.0
-grow_horizontal = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="oPlayer/CanvasLayer2/tutorial_label_0/Panel" unique_id=106789741]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = 0
-
-[node name="tutorial_label" type="Label" parent="oPlayer/CanvasLayer2/tutorial_label_0/Panel/MarginContainer" unique_id=1350143052]
-custom_minimum_size = Vector2(400, 150)
-layout_mode = 2
-text = "You've just awakend inside this strange house.
-Move around and search for an exit.
-Use WASD to walk.
-"
-label_settings = SubResource("LabelSettings_4i0b5")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-metadata/_tab_index = 1
-metadata/_tab_name = "Key Binds"
-
-[node name="tutorial_label_1" type="Control" parent="oPlayer/CanvasLayer2" unique_id=309273432]
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_top = 677.0
-offset_bottom = 677.0
-grow_horizontal = 2
-
-[node name="Panel" type="Panel" parent="oPlayer/CanvasLayer2/tutorial_label_1" unique_id=299883775]
-custom_minimum_size = Vector2(400, 150)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_top = 30.0
-offset_right = 200.0
-offset_bottom = 180.0
-grow_horizontal = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="oPlayer/CanvasLayer2/tutorial_label_1/Panel" unique_id=902520162]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = 0
-
-[node name="tutorial_label" type="Label" parent="oPlayer/CanvasLayer2/tutorial_label_1/Panel/MarginContainer" unique_id=1288263672]
-custom_minimum_size = Vector2(400, 150)
-layout_mode = 2
-text = "Good! I see you're still able to move.
-See that flashlight there? Try to pick it up. 
-Simply over with your cursor and left click it."
-label_settings = SubResource("LabelSettings_4i0b5")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-metadata/_tab_index = 1
-metadata/_tab_name = "Key Binds"
-
-[node name="tutorial_label_2" type="Control" parent="oPlayer/CanvasLayer2" unique_id=1862256597]
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_top = 677.0
-offset_bottom = 677.0
-grow_horizontal = 2
-
-[node name="Panel" type="Panel" parent="oPlayer/CanvasLayer2/tutorial_label_2" unique_id=939933696]
-custom_minimum_size = Vector2(400, 150)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_top = 30.0
-offset_right = 200.0
-offset_bottom = 180.0
-grow_horizontal = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="oPlayer/CanvasLayer2/tutorial_label_2/Panel" unique_id=1007152054]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = 0
-
-[node name="tutorial_label" type="Label" parent="oPlayer/CanvasLayer2/tutorial_label_2/Panel/MarginContainer" unique_id=1059221962]
-custom_minimum_size = Vector2(400, 150)
-layout_mode = 2
-text = "Great, you seem capable of basic functions.
-You do remember how to open doors right?
-If you dont, simply press E to interact with one."
-label_settings = SubResource("LabelSettings_4i0b5")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-metadata/_tab_index = 1
-metadata/_tab_name = "Key Binds"
 
 [node name="mainSceneCamera" type="Camera2D" parent="." unique_id=228657214]
 z_index = 100
@@ -291,13 +389,14 @@ zoom = Vector2(4, 4)
 
 [node name="tutorialAnimationManager" type="AnimationPlayer" parent="." unique_id=1935199028]
 libraries/ = SubResource("AnimationLibrary_icdss")
-autoplay = &"stage_0"
+autoplay = &"begin_introduction"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=222371176]
 tile_map_data = PackedByteArray("AAD3//v/AAAGAAAAAAD3//z/AAAGAAAAAAD3//3/AAAGAAAAAAD3//7/AAAGAAAAAAD3////AAAGAAAAAAD3/wAAAAAGAAAAAAD3/wEAAAAGAAAAAAD3/wIAAAAGAAAAAAD3/wMAAAAGAAAAAAD3/wQAAAAGAAAAAAD4/wQAAAAGAAAAAAD5/wQAAAAGAAAAAAD6/wQAAAAGAAAAAAD7/wQAAAAGAAAAAAD8/wQAAAAGAAAAAAD9/wQAAAAGAAAAAAD+/wQAAAAGAAAAAAD//wQAAAAGAAAAAAAAAAQAAAAGAAAAAAABAAQAAAAGAAAAAAACAAQAAAAGAAAAAAADAAQAAAAGAAAAAAAEAAQAAAAGAAAAAAAFAAQAAAAGAAAAAAAGAAQAAAAGAAAAAAAHAAQAAAAGAAAAAAAIAAQAAAAGAAAAAAAIAAMAAAAGAAAAAAAIAAIAAAAGAAAAAAAIAAEAAAAGAAAAAAAIAAAAAAAGAAAAAAAIAP//AAAGAAAAAAAIAP7/AAAGAAAAAAAIAP3/AAAGAAAAAAAIAPz/AAAGAAAAAAAIAPv/AAAGAAAAAAAHAPv/AAAGAAAAAAAGAPv/AAAGAAAAAAAFAPv/AAAGAAAAAAAEAPv/AAAGAAAAAAADAPv/AAAGAAAAAAACAPv/AAAGAAAAAAABAPv/AAAGAAAAAAAAAPv/AAAGAAAAAAD///v/AAAGAAAAAAD+//v/AAAGAAAAAAD9//v/AAAGAAAAAAD8//v/AAAGAAAAAAD7//v/AAAGAAAAAAD6//v/AAAGAAAAAAD5//v/AAAGAAAAAAD4//v/AAAGAAAAAAA=")
 tile_set = ExtResource("3_4i0b5")
 
 [node name="Flashlight" parent="." unique_id=1428563663 node_paths=PackedStringArray("GameActionManager") instance=ExtResource("4_3ensd")]
+visible = false
 position = Vector2(64, -32)
 objectType = 1
 GameActionManager = NodePath("GameActionManager")
@@ -311,3 +410,225 @@ data = 2
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Flashlight" unique_id=1554404207]
 sprite_frames = ExtResource("6_elxl1")
 animation = &"flash_light"
+
+[node name="tutorial_dialog_layer" type="CanvasLayer" parent="." unique_id=610952545]
+
+[node name="tutorial_label_0" type="Control" parent="tutorial_dialog_layer" unique_id=1829667302]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 677.0
+offset_bottom = 677.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="tutorial_dialog_layer/tutorial_label_0" unique_id=902095410]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 30.0
+offset_right = 200.0
+offset_bottom = 180.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="tutorial_dialog_layer/tutorial_label_0/Panel" unique_id=106789741]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+
+[node name="tutorial_label" type="Label" parent="tutorial_dialog_layer/tutorial_label_0/Panel/MarginContainer" unique_id=1350143052]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+text = "Use WASD to move around."
+label_settings = SubResource("LabelSettings_4i0b5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_tab_index = 1
+metadata/_tab_name = "Key Binds"
+
+[node name="tutorial_label_1" type="Control" parent="tutorial_dialog_layer" unique_id=309273432]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 677.0
+offset_bottom = 677.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="tutorial_dialog_layer/tutorial_label_1" unique_id=299883775]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 30.0
+offset_right = 200.0
+offset_bottom = 180.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="tutorial_dialog_layer/tutorial_label_1/Panel" unique_id=902520162]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+
+[node name="tutorial_label" type="Label" parent="tutorial_dialog_layer/tutorial_label_1/Panel/MarginContainer" unique_id=1288263672]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+text = "Use Left Mouse to interact with the flashlight."
+label_settings = SubResource("LabelSettings_4i0b5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_tab_index = 1
+metadata/_tab_name = "Key Binds"
+
+[node name="initial_dialog_layer" type="CanvasLayer" parent="." unique_id=288119862]
+
+[node name="Control" type="Control" parent="initial_dialog_layer" unique_id=1408683212]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="initial_dialog_layer/Control" unique_id=316626965]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -528.0
+offset_top = -60.0
+offset_right = 528.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="initial_dialog_layer/Control/Panel" unique_id=1001100998]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="introduction_label_1" type="Label" parent="initial_dialog_layer/Control/Panel/MarginContainer" unique_id=1684272320]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1056, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_icdss")
+text = "Whoa! What is going on? Where am i??"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="introduction_label_2" type="Label" parent="initial_dialog_layer/Control/Panel/MarginContainer" unique_id=1525020964]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1056, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_icdss")
+text = "What is this place??"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="introduction_label_3" type="Label" parent="initial_dialog_layer/Control/Panel/MarginContainer" unique_id=148568760]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1056, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_icdss")
+text = "Mom? Where are you mom?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="introduction_label_4" type="Label" parent="initial_dialog_layer/Control/Panel/MarginContainer" unique_id=472185143]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1056, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_icdss")
+text = "Mom? Dad?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="introduction_label_5" type="Label" parent="initial_dialog_layer/Control/Panel/MarginContainer" unique_id=1166703824]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1056, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_icdss")
+text = "Where is everybody? And why can't i see anything?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="introduction_label_6" type="Label" parent="initial_dialog_layer/Control/Panel/MarginContainer" unique_id=1690021527]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1056, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_icdss")
+text = "Am i...DEAD?!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="introduction_label_7" type="Label" parent="initial_dialog_layer/Control/Panel/MarginContainer" unique_id=680112194]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1056, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_icdss")
+text = "Mmh, no it can't be that. "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="introduction_label_8" type="Label" parent="initial_dialog_layer/Control/Panel/MarginContainer" unique_id=167716713]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1056, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_icdss")
+text = "I was writing something in my diary before going to bed...but...i can't remember what."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="introduction_label_9" type="Label" parent="initial_dialog_layer/Control/Panel/MarginContainer" unique_id=1853355719]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1056, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_icdss")
+text = "Wait..what is that?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

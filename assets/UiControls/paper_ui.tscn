@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://377gaqvsck5u" path="res://assets/UiControls/PaperUi.cs" id="1_qj1ma"]
 [ext_resource type="Theme" uid="uid://dd3ft8s202wwy" path="res://assets/Themes/richtextlabel_theme.tres" id="1_tb0gr"]
+[ext_resource type="Texture2D" uid="uid://dcukhwefubam2" path="res://assets/sprites/paper_ui_sprite.png" id="2_i46ol"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b5rn1"]
+texture = ExtResource("2_i46ol")
+region_rect = Rect2(16, 0, 96, 128)
 
 [node name="PaperUi" type="Control" unique_id=132750339]
 layout_mode = 3
@@ -26,17 +31,17 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="CenterContainer" unique_id=579079045]
+[node name="Panel" type="PanelContainer" parent="CenterContainer" unique_id=1786267622]
 custom_minimum_size = Vector2(350, 450)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b5rn1")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Panel" unique_id=571274211]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 40
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/Panel/MarginContainer" unique_id=1044909763]
 layout_mode = 2
@@ -46,13 +51,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_tb0gr")
-autowrap_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 shortcut_keys_enabled = false
 
 [node name="close_button" type="Button" parent="." unique_id=1434787510]
 layout_mode = 0
 offset_left = 687.0
-offset_top = 558.0
+offset_top = 570.0
 offset_right = 750.0
-offset_bottom = 589.0
+offset_bottom = 601.0
 text = "Close"

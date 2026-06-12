@@ -14,6 +14,10 @@ public partial class TutorialScene: Node2D
     {
         base._Ready( );
 
+        // listen for events.
+        EventHandler.ListenForEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_MOVEMENT, PlayNextAnimation );
+        EventHandler.ListenForEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_PICKED_FLASHLIGHT, PlayNextAnimation );
+
         tutorialAnimationManager = FindChild( "tutorialAnimationManager", true ) as AnimationPlayer;
         if( tutorialAnimationManager == null )
         {
@@ -21,12 +25,13 @@ public partial class TutorialScene: Node2D
             return;
         }
 
-        // listen for events.
-        EventHandler.ListenForEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_MOVEMENT, PlayNextAnimation );
-        EventHandler.ListenForEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_INTERACT, PlayNextAnimation );
-        EventHandler.ListenForEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_PICKED_FLASHLIGHT, PlayNextAnimation );
-
-        EventHandler.TriggerEvent( EventHandler.EventType.TUTORIAL_PLAYER_MOVEMENT, 0 ); // trigger initial tutorial stage
+        tutorialAnimationManager.AnimationFinished += ( animationName ) =>
+        {
+            if (animationName == "begin_introduction" )
+            {
+                EventHandler.TriggerEvent( EventHandler.EventType.TUTORIAL_PLAYER_MOVEMENT, 0 );
+            }
+        };
     }
 
     // finds out how far into the tutorial the player is and plays the correct animation
@@ -36,7 +41,7 @@ public partial class TutorialScene: Node2D
         {
             case 0:     // wasd movement
             {
-                //tutorialAnimationManager.Play( "stage_0" );
+                tutorialAnimationManager.Play( "stage_0" );
                 stagesCompleted.Add( tutorialStage );
                 break;
             }
@@ -71,10 +76,9 @@ public partial class TutorialScene: Node2D
                 {
                     break;
                 }
-                tutorialAnimationManager.Play( "stage_completed" );
+                //tutorialAnimationManager.Play( "stage_completed" );
                 stagesCompleted.Add( tutorialStage );
                 EventHandler.StopListeningToEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_MOVEMENT, PlayNextAnimation );
-                EventHandler.StopListeningToEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_INTERACT, PlayNextAnimation );
                 EventHandler.StopListeningToEvent<int>( EventHandler.EventType.TUTORIAL_PLAYER_PICKED_FLASHLIGHT, PlayNextAnimation );
 
                 PackedScene scene_1 = GD.Load<PackedScene>("res://assets/scenes/scene_1.tscn");

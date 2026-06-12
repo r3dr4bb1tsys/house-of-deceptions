@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://vibjfanpbwxu"]
+
+[sub_resource type="Gradient" id="Gradient_8hmo6"]
+offsets = PackedFloat32Array(0, 0.9805195, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aaq1b"]
+gradient = SubResource("Gradient_8hmo6")
+
+[resource]
+ScrollContainer/icons/scroll_hint_horizontal = SubResource("GradientTexture1D_aaq1b")

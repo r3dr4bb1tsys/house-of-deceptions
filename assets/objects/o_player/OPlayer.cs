@@ -249,7 +249,6 @@ public partial class OPlayer: CharacterBody2D
         //* Interaction
         if( @event.IsActionPressed( PlayerActions.Interact ) )
         {
-            EventHandler.TriggerEvent( EventHandler.EventType.TUTORIAL_PLAYER_INTERACT, 3 );
             if( enteredDoor.doorType != ODoor.DoorType.GATE ) TryInteractWithDoor( );
         }
 
