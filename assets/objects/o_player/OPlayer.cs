@@ -21,12 +21,18 @@ public partial class OPlayer: CharacterBody2D
     #region Private Variables
     private Timer generalTimer = new Timer();
     private ODoor enteredDoor = null;
-    private AnimatedSprite2D spriteAnimator;
-    private string lastAnimation = string.Empty;
+    private AnimationPlayer spriteAnimator;
+    private Sprite2D player_sprite;
+    //private string lastAnimation = string.Empty;
     private Label objectNameLabel = null;
     private Panel objectInfoPanel = null;
     private Panel doorInfoPanel = null;
     private PointLight2D player_flash_light = null;
+    private FacingDirections facingDirection;
+    private enum FacingDirections
+    {
+        side, up, down
+    }
     #endregion
     // # ----------------- # //
 
@@ -43,15 +49,84 @@ public partial class OPlayer: CharacterBody2D
     #endregion
     // # ----------------- # //
 
-    // # public variables # // 
-    // this variable is used to check wether the player is ready for teleportation or not, this is used in door transportation for example. 
+    // # public variables # //
     public bool readyToTeleport = false;
     // # ---------------- # //
 
     // # Exports # //
-    // Speed Variable
     [Export] public int Speed = 50;
     // # ------- # //
+
+
+    private void MovePlayer( )
+    {
+        //* IMPORTANT NOTE: This is a basic check for player movement. This cheks if the player is allowed to move or not. 
+        if( SharedVariables.canPlayerMove == false ) return;
+
+        // collect the direction of the player based on the action pressed.
+        var direction = Input.GetVector(PlayerActions.MoveLeft, PlayerActions.MoveRight, PlayerActions.MoveUp, PlayerActions.MoveDown);
+
+        // normalize the player velocity so that diagonal movement isnt faster.
+        Velocity = direction.Normalized( ) * Speed;
+
+        // apply the correct animation based on the player movement direction.
+        // idle animations
+        if( Velocity == Vector2.Zero ) // velocity is zero meaning the player is not moving, therefore the player is idle, so we play the idle animation. 
+        {
+            switch (facingDirection)
+            {
+                case FacingDirections.side:
+                {
+                    spriteAnimator.Play( "IdleSide" );
+                    break;
+                }
+                case FacingDirections.up:
+                {
+                    spriteAnimator.Play( "IdleUp" );
+                    break;
+                }
+                case FacingDirections.down:
+                {
+                    spriteAnimator.Play( "IdleDown" );
+                    break;
+                }
+            }
+        }
+
+        // player is moving
+        if( direction.X != Vector2.Zero.X )  // x direction is not zero meaning the player is moving either left or right
+        {
+            spriteAnimator.Play( "walkSide" );
+            facingDirection = FacingDirections.side;
+            if( direction.X < 0 ) // player is moving left so we flip the sprite horizontaly to the left.
+            {
+                player_sprite.FlipH = true;
+            }
+            else // player is moving right so we flip the sprite horizontaly to the right.
+            {
+                player_sprite.FlipH = false;
+            }
+        }
+        if( direction.Y != Vector2.Zero.Y ) // y direction is not zero meaning the player is moving either up or down.
+        {
+            if( direction.Y < 0 ) // player is moving up so we play the walkUp animation.
+            {
+                spriteAnimator.Play( "walkUp" );
+                facingDirection = FacingDirections.up;
+
+            }
+            else // player is moving down so we play the walkDown animation.
+            {
+                spriteAnimator.Play( "walkDown" );
+                facingDirection = FacingDirections.down;
+
+            }
+        }
+        MoveAndSlide( );
+
+        //TODO debug only, remove or add a check for debug and release builds.
+        EventHandler.TriggerEvent( EventHandler.EventType.PLAYER_INFO_UPDATED ); // trigger the debug_info_update for every frame
+    }
 
     public override void _Ready( )
     {
@@ -78,10 +153,17 @@ public partial class OPlayer: CharacterBody2D
         }
 
         // check if the spriteAnimator is inside the player, if not return an error message. 
-        spriteAnimator = FindChild( "spriteAnimator", true ) as AnimatedSprite2D;
+        spriteAnimator = FindChild( "spriteAnimator", true ) as AnimationPlayer;
         if( spriteAnimator == null )
         {
             ErrorHandler.ThrowError( $"[OPlayer.cs/_Ready] - Failed to find the sprite animator for the player. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
+        }
+
+        // check if the player sprite exists. if not return an error message.
+        player_sprite = FindChild( "player_sprite", true ) as Sprite2D;
+        if (player_sprite == null)
+        {
+            ErrorHandler.ThrowError( "[OPlayer.cs/_Ready] - Failed to find the player sprite. Make sure to add one as a child of the player.", ErrorHandler.ErrorType.GENERIC_ERROR );
         }
 
         // search for the main camera inside the main scene, if fails to find one return an error message.
@@ -185,63 +267,7 @@ public partial class OPlayer: CharacterBody2D
     // standard physics process that runs every frame.
     public override void _PhysicsProcess( double delta )
     {
-        //* IMPORTANT NOTE: This is a basic check for player movement. This cheks if the player is allowed to move or not. 
-        if( SharedVariables.canPlayerMove == false ) return;
-
-        // collect the direction of the player based on the action pressed.
-        var direction = Input.GetVector(PlayerActions.MoveLeft, PlayerActions.MoveRight, PlayerActions.MoveUp, PlayerActions.MoveDown);
-
-        // normalize the player velocity so that diagonal movements isnt sqrt(2) faster. 
-        Velocity = direction.Normalized( ) * Speed;
-
-        // apply the correct animation based on the player movement direction.
-
-        if( Velocity == Vector2.Zero ) // velocity is zero meaning the player is not moving, therefore the player is idle, so we play the idle animation. 
-        {
-            if( lastAnimation.ToLower( ).Contains( "side" ) )   // the last animation was walkSide;
-            {
-                spriteAnimator.Play( "sideIdle" );
-            }
-            else    // the last animation was either walkdown or walkup. 
-            {
-                if( lastAnimation.ToLower( ).Contains( "up" ) )
-                {
-                    spriteAnimator.Play( "backIdle" );
-                }
-                else if( lastAnimation.ToLower( ).Contains( "down" ) )
-                {
-                    spriteAnimator.Play( "frontIdle" );
-                }
-            }
-        }
-        if( direction.X != Vector2.Zero.X )  // x direction is not zero meaning the player is moving either left or right
-        {
-            spriteAnimator.Play( "walkSide" );
-            if( direction.X < 0 ) // player is moving left so we flip the sprite horizontaly to the left.
-            {
-                spriteAnimator.FlipH = true;
-            }
-            else // player is moving right so we flip the sprite horizontaly to the right.
-            {
-                spriteAnimator.FlipH = false;
-            }
-        }
-        if( direction.Y != Vector2.Zero.Y ) // y direction is not zero meaning the player is moving either up or down.
-        {
-            if( direction.Y < 0 ) // player is moving up so we play the walkUp animation.
-            {
-                spriteAnimator.Play( "walkUp" );
-            }
-            else // player is moving down so we play the walkDown animation.
-            {
-                spriteAnimator.Play( "walkDown" );
-            }
-        }
-        lastAnimation = spriteAnimator.Animation;
-        MoveAndSlide( );
-
-        //TODO debug only, remove or add a check for debug and release builds.
-        EventHandler.TriggerEvent( EventHandler.EventType.PLAYER_INFO_UPDATED ); // trigger the debug_info_update for every frame
+        MovePlayer( );
     }
 
     public override void _Input( InputEvent @event )
@@ -414,8 +440,8 @@ public partial class OPlayer: CharacterBody2D
 			[Current Velocity]: {this.Velocity}
 			[Interacting With]: {area2D?.Name ?? "None"}
 			[this.readyToTeleport]: {this.readyToTeleport}
-			[Current Animation]: {spriteAnimator.Animation}
-			[Flipped]: {spriteAnimator.FlipH}
+			[Current Animation]: {spriteAnimator.CurrentAnimation}
+			[Flipped]: {player_sprite.FlipH}
 
 			[DOOR]
 			[Door Name]: {enteredDoor?.Name ?? "None"}
